@@ -7,6 +7,7 @@ require_once("../vendor/autoload.php");
 use Illuminate\Http\Request;
 use Telegram\Bot\Api as Api;
 use \Telegram as Telegram;
+use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 use Carbon\Carbon;
 use Exception;
 
@@ -45,12 +46,12 @@ class TelegramController extends Controller
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
         $keyboard = [
-            ['Nope', 'OK']
+            ['one', 'two', 'three']
         ];
-        $reply_markup = $this->telegram->replyKeyboardMarkup([
+        $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true
+            'resize_keyboard' => true 
+            //'one_time_keyboard' => true
         ]);
         $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
         //calling the appropriate method based on the user command
