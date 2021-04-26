@@ -46,7 +46,7 @@ class TelegramController extends Controller
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
         $keyboard = [
-            ['one', 'two', 'three']
+            ['/one', '/two', '/three']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
@@ -60,8 +60,8 @@ class TelegramController extends Controller
             'reply_markup' => $reply_markup
         ]);
         $messageId = $response->getMessageId();
-        return $messageId;
-        $this->telegram->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);*/
+        return $messageId;*/
+
         //calling the appropriate method based on the user command
         switch ($this->text) {
             case '/start':
@@ -85,7 +85,6 @@ class TelegramController extends Controller
         if ($info) {
             $message .= $info . chr(10);
         }
-        $message .= '/menu' . chr(10);
         $message .= '/one' . chr(10);
         $message .= '/two' . chr(10);
         $message .= '/three' . chr(10);
