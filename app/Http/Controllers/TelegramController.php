@@ -83,33 +83,30 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function one()
     {
-        $message = "You enter one";
         //saving a record to the databse
-        Telegram::create([
+        /*Telegram::create([
             'username' => $this->username,
             'command' => __FUNCTION__//saving command, to tracking what method to do when we have multiple input handling
-        ]);
- 
+        ]);*/
+        $message = "You enter one";
         $this->sendMessage($message);
     }
     public function two()
     {
-        $message = "You enter two";
-        Telegram::create([
+        /*Telegram::create([
             'username' => $this->username,
             'command' => __FUNCTION__
-        ]);
- 
+        ]);*/
+        $message = "You enter two";
         $this->sendMessage($message);
     }
     public function three()
     {
-        $message = "You enter three";
-        Telegram::create([
+        /*Telegram::create([
             'username' => $this->username,
             'command' => __FUNCTION__
-        ]);
- 
+        ]);*/
+        $message = "You enter three";
         $this->sendMessage($message);
     }
     ////////////////////////////////////////////////////
