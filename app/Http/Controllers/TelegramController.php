@@ -15,10 +15,20 @@ class TelegramController extends Controller
 {
     protected $telegram;
 
+    protected $reply_markup;
     protected $chat_id;
     public function __construct(){
         //Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $keyboard = [
+            ['/one', '/two', '/three']
+        ];
+        $this->reply_markup = Keyboard::make([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true
+        ]);
+        
     }
     public function getMe(){
         $response = $this->telegram->getMe();
@@ -45,13 +55,13 @@ class TelegramController extends Controller
  
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
-        $keyboard = [
+        /*$keyboard = [
             ['/one', '/two', '/three']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
-            'resize_keyboard' => true 
-            //'one_time_keyboard' => true
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true
         ]);
         
         /*$response = $this->telegram->sendMessage([
@@ -89,7 +99,6 @@ class TelegramController extends Controller
         $message .= '/two' . chr(10);
         $message .= '/three' . chr(10);
  
-        //$content = array('chat_id' => $chat_id, 'text' => 'Hello');
         $this->sendMessage($message);
     }
 
@@ -117,6 +126,7 @@ class TelegramController extends Controller
         $data = [
             'chat_id' => $this->chat_id,
             'text' => $message,
+            'reply_markup' => $this->reply_markup
         ];
  
         if ($parse_html) $data['parse_mode'] = 'HTML';
