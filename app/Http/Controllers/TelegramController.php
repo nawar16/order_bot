@@ -53,7 +53,7 @@ class TelegramController extends Controller
             'resize_keyboard' => true 
             //'one_time_keyboard' => true
         ]);
-        $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
+        $this->telegram->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
         //calling the appropriate method based on the user command
         switch ($this->text) {
             case '/start':
