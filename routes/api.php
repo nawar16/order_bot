@@ -23,3 +23,11 @@ Route::post('/bot/getupdates', function() {
     $updates = Telegram::getUpdates();
     return (json_encode($updates));
 });
+
+Route::get('get-me','TelegramController@getMe');
+Route::get('set-hook', 'TelegramController@setWebHook');
+
+Route::post('/'.env('TELEGRAM_BOT_TOKEN').'/webhook', 'TelegramController@handleRequest');
+
+Route::get('/updated-activity', 'TelegramController@updatedActivity');
+Route::post('/getUpdates', 'TelegramController@getUpdates');

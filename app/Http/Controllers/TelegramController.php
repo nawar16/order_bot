@@ -28,7 +28,7 @@ class TelegramController extends Controller
      * https://api.telegram.org/bot.env('TELEGRAM_BOT_TOKEN')/getWebhookInfo
      */
     public function setWebHook(){
-        $url = 'https://tele-bot-tests.herokuapp.com/'.env('TELEGRAM_BOT_TOKEN').'/webhook';
+        $url = 'https://tele-bot-tests.herokuapp.com/api/'.env('TELEGRAM_BOT_TOKEN').'/webhook';
         $response = $this->telegram->setWebHook(['url' => $url]);
         return $response == true ?  redirect()->back() : dd($response);
     }
