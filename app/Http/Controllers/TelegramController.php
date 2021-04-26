@@ -44,6 +44,15 @@ class TelegramController extends Controller
  
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
+        $keyboard = [
+            ['Nope', 'OK']
+        ];
+        $reply_markup = $this->telegram->replyKeyboardMarkup([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true
+        ]);
+        $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
         //calling the appropriate method based on the user command
         switch ($this->text) {
             case '/start':
@@ -83,29 +92,16 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function one()
     {
-        //saving a record to the databse
-        /*Telegram::create([
-            'username' => $this->username,
-            'command' => __FUNCTION__//saving command, to tracking what method to do when we have multiple input handling
-        ]);*/
         $message = "You enter one";
         $this->sendMessage($message);
     }
     public function two()
     {
-        /*Telegram::create([
-            'username' => $this->username,
-            'command' => __FUNCTION__
-        ]);*/
         $message = "You enter two";
         $this->sendMessage($message);
     }
     public function three()
     {
-        /*Telegram::create([
-            'username' => $this->username,
-            'command' => __FUNCTION__
-        ]);*/
         $message = "You enter three";
         $this->sendMessage($message);
     }
@@ -130,6 +126,19 @@ class TelegramController extends Controller
     public function getUpdates(){
         $content = ['chat_id' => $this->chat_id, 'text' => 'HI'];
         $this->telegram->sendMessage($content);
+    }
+
+    public function custom_keyboard()
+    {
+        $keyboard = [
+            ['Nope', 'OK']
+        ];
+        $reply_markup = $this->telegram->replyKeyboardMarkup([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true
+        ]);
+        $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
     }
 }
     
