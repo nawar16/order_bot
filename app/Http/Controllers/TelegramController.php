@@ -25,8 +25,8 @@ class TelegramController extends Controller
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true
+            'resize_keyboard' => false, 
+            'one_time_keyboard' => false
         ]);
         
     }
@@ -125,17 +125,5 @@ class TelegramController extends Controller
         $this->telegram->sendMessage($content);
     }
 
-    public function custom_keyboard()
-    {
-        $keyboard = [
-            ['Nope', 'OK']
-        ];
-        $reply_markup = $this->telegram->replyKeyboardMarkup([
-            'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => false
-        ]);
-        $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
-    }
 }
     
