@@ -10,7 +10,7 @@ use \Telegram as Telegram;
 use Carbon\Carbon;
 use Exception;
 
-class TelegramController1 extends Controller
+class TelegramController extends Controller
 {
     protected $telegram;
 
