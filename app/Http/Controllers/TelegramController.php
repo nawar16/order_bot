@@ -25,9 +25,10 @@ class TelegramController extends Controller
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
-            'resize_keyboard' => false, 
+            'resize_keyboard' => true, 
             'one_time_keyboard' => false
         ]);
+        $this->telegram->replyKeyboardHide();
         
     }
     public function getMe(){
