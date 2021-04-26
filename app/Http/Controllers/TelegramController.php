@@ -52,13 +52,13 @@ class TelegramController extends Controller
                 $this->showMenu();
                 break;
             case '/one':
-                $this->showMenu();
+                $this->one();
                 break;
             case '/two':
-                $this->showMenu();
+                $this->two();
                 break;
             case '/three':
-                $this->showMenu();
+                $this->three();
                 break;
             default:
                 $this->showMenu();
