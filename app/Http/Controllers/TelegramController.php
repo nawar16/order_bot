@@ -55,27 +55,9 @@ class TelegramController extends Controller
  
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
-        /*$keyboard = [
-            ['/one', '/two', '/three']
-        ];
-        $reply_markup = Keyboard::make([
-            'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true
-        ]);
-        
-        /*$response = $this->telegram->sendMessage([
-            'chat_id' => $this->chat_id , 
-            'text' => $this->text, 
-            'reply_markup' => $reply_markup
-        ]);
-        $messageId = $response->getMessageId();
-        return $messageId;*/
 
         //calling the appropriate method based on the user command
         switch ($this->text) {
-            case '/start':
-            //find all of the available commands
             case '/one':
                 $this->one();
                 break;
@@ -151,7 +133,7 @@ class TelegramController extends Controller
         $reply_markup = $this->telegram->replyKeyboardMarkup([
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
-            'one_time_keyboard' => true
+            'one_time_keyboard' => false
         ]);
         $this->replyWithMessage(['text' => 'test keyboard', 'reply_markup' => $reply_markup]);
     }
