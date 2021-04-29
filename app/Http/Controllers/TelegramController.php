@@ -27,7 +27,8 @@ class TelegramController extends Controller
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
-            'hide_keyboard'=> true
+            'hide_keyboard'=> true,
+            'inline_keyboard' => $keyboard,
         ]);
         
     }
