@@ -86,6 +86,7 @@ class TelegramController extends Controller
         $message .= '/one' . chr(10);
         $message .= '/two' . chr(10);
         $message .= '/three' . chr(10);
+        $message .= '/example' . chr(10);
  
         $this->sendMessage($message);
     }
@@ -94,7 +95,8 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function example_command()
     {
-        $this->telegram->triggerCommand('example');
+        $update = Telegram::commandsHandler(true); 
+        $this->telegram->triggerCommand('example', $update);
     }
     public function one()
     {
