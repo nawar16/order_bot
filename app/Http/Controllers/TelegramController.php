@@ -24,7 +24,7 @@ class TelegramController extends Controller
         //$command = new Telegram\Bot\Commands\HelpCommand();
         //Telegram::addCommand($command);
         $keyboard = [
-            ['/one', '/two', '/three']
+            ['/one', '/two', '/three', '/example']
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
@@ -71,6 +71,8 @@ class TelegramController extends Controller
             case '/three':
                 $this->three();
                 break;
+            case '/example':
+                $this->example_command();
             default:
                 $this->showMenu();
         }
@@ -90,6 +92,10 @@ class TelegramController extends Controller
 
  
     //////////////////////////Handling Input////////////////////////// 
+    public function example_command()
+    {
+        $this->telegram->triggerCommand('example');
+    }
     public function one()
     {
         $message = "You enter one";
