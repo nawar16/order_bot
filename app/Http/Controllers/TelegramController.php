@@ -21,6 +21,8 @@ class TelegramController extends Controller
         //Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         //$this->telegram->addCommand(App\Telegram\ExampleCommand::class);
+        $command = new Telegram\Bot\Commands\HelpCommand();
+        Telegram::addCommand($command);
         $keyboard = [
             ['/one', '/two', '/three']
         ];
