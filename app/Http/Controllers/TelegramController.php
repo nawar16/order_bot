@@ -134,5 +134,11 @@ class TelegramController extends Controller
         $this->telegram->sendMessage($content);
     }
 
+    public function test()
+    {
+        $update = Telegram::commandsHandler(true); 
+        dd($this->telegram->triggerCommand('example', $update));
+    }
+
 }
     
