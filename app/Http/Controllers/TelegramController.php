@@ -130,8 +130,9 @@ class TelegramController extends Controller
         $activity = Telegram::getUpdates();
         dd($activity);
     }
-    public function getUpdates(){
-        $content = ['chat_id' => $this->chat_id, 'text' => 'HI'];
+    public function getUpdates(Request $request){
+        $chat_id = $request['message']['chat']['id'];
+        $content = ['chat_id' => $chat_id, 'text' => 'HI'];
         $this->telegram->sendMessage($content);
     }
 
