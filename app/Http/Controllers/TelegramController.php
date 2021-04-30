@@ -138,7 +138,7 @@ class TelegramController extends Controller
     public function test()
     {
         $updates = $this->telegram->getWebhookUpdates();
-        dd($update);
+        dd($updates);
     }
 
 }
