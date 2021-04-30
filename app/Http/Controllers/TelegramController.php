@@ -20,6 +20,7 @@ class TelegramController extends Controller
     public function __construct(){
         //Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $this->telegram->addCommand(App\Telegram\ExampleCommand::class);
         $keyboard = [
             ['/one', '/two', '/three']
         ];
@@ -41,7 +42,7 @@ class TelegramController extends Controller
             //'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             //'one_time_keyboard' => true,
-            //'hide_keyboard'=> true,
+            'hide_keyboard'=> true,
             'inline_keyboard' => $inline_keyboard,
         ]);
         
