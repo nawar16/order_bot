@@ -70,6 +70,7 @@ class TelegramController extends Controller
                 break;
             case '/example':
                 $this->example_command();
+                break;
             default:
                 $this->showMenu();
         }
