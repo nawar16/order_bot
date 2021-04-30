@@ -93,7 +93,7 @@ class TelegramController extends Controller
     public function example_command()
     {
         $update = Telegram::commandsHandler(true); 
-        $this->telegram->triggerCommand('example', $update);
+        return $this->telegram->triggerCommand('example', $update);
     }
     public function one()
     {
