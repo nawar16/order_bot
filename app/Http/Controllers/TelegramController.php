@@ -26,26 +26,11 @@ class TelegramController extends Controller
         $keyboard = [
             ['/one', '/two', '/three']
         ];
-        $inline_keyboard[] = [
-            [
-                'text' =>'one',
-                'callback_data' => '/one'
-            ],
-            [
-                'text' =>'two',
-                'callback_data' => '/two'
-            ],
-            [
-                'text' =>'three',
-                'callback_data' => '/three'
-            ]
-        ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
-            'hide_keyboard'=> true,
-            //'inline_keyboard' => $inline_keyboard,
+            'hide_keyboard'=> true
         ]);
         
     }
