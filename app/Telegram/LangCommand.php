@@ -27,6 +27,10 @@ class LangCommand extends Command
 
         if ($update->isType('callback_query')) {
             Log::info('...is callback');
+            $this->telegram->sendMessage([
+                'chat_id' => $update->callbackQuery->from->id,
+                'text' => $update->callbackQuery->data
+            ]);
 
         } else {
 
