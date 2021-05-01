@@ -33,8 +33,8 @@ return [
     */
     'bots'                         => [
         'mybot' => [
-            'username'            => 'Sy_Sy_bot',
-            'token'               => env('TELEGRAM_BOT_TOKEN', '1728341553:AAFkoKDEszGxPzeyy_E38AdjROQ5xE5gwxs'),
+            'username'            => 'Tele1_tele2_tele3_bot',
+            'token'               => env('TELEGRAM_BOT_TOKEN', '1721556079:AAEp4yhGMS98w10B_T1WosoTZhKu5ob8zHo'),
             'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url'         => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
             'commands'            => [
@@ -118,6 +118,7 @@ return [
     'commands'                     => [
         Telegram\Bot\Commands\HelpCommand::class,
         App\Telegram\ExampleCommand::class,
+        App\Telegram\LangCommand::class,
     ],
 
     /*

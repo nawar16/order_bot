@@ -59,6 +59,9 @@ class TelegramController extends Controller
 
         //calling the appropriate method based on the user command
         switch ($this->text) {
+            case '/start':
+                $this->start();
+                break;
             case '/one':
                 $this->one();
                 break;
@@ -71,6 +74,12 @@ class TelegramController extends Controller
             case '/example':
                 $this->example_command();
                 break;
+            case '/English':
+                $this->english();
+                break;
+            case '/Arabic':
+                $this->arabic();
+                break;    
             default:
                 $this->showMenu();
         }
@@ -81,6 +90,7 @@ class TelegramController extends Controller
         if ($info) {
             $message .= $info . chr(10);
         }
+        $message .= '/start' . chr(10);
         $message .= '/one' . chr(10);
         $message .= '/two' . chr(10);
         $message .= '/three' . chr(10);
@@ -96,20 +106,37 @@ class TelegramController extends Controller
         $update = Telegram::commandsHandler(true); 
         return $this->telegram->triggerCommand('example', $update);
     }
+    public function start()
+    {
+        $update = Telegram::commandsHandler(true); 
+        return $this->telegram->triggerCommand('lang', $update);
+    }
     public function one()
     {
-        $message = "You enter one";
+        $message = trans('telegram.you-enter-one');
         $this->sendMessage($message);
     }
     public function two()
     {
-        $message = "You enter two";
+        $message = trans('telegram.you-enter-two');
         $this->sendMessage($message);
     }
     public function three()
     {
-        $message = "You enter three";
+        $message = trans('telegram.you-enter-three');
         $this->sendMessage($message);
+    }
+    public function english()
+    {
+        \App::setLocale('en');
+        $update = Telegram::commandsHandler(true); 
+        return $this->telegram->triggerCommand('operation', $update);
+    }
+    public function arabic()
+    {
+        \App::setLocale('ar');
+        $update = Telegram::commandsHandler(true); 
+        return $this->telegram->triggerCommand('operation', $update);
     }
     ////////////////////////////////////////////////////
  
@@ -125,6 +152,7 @@ class TelegramController extends Controller
  
         $this->telegram->sendMessage($data);
     }
+    ////////////////////////////////////////////////////
     public function updatedActivity()
     {
         $activity = Telegram::getUpdates();
