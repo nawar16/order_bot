@@ -20,7 +20,6 @@ class TelegramController extends Controller
     public function __construct(){
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-        \App::setLocale('en');
         $keyboard = [
             ['/one', '/two', '/three', '/example']
         ];
