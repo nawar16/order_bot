@@ -113,12 +113,12 @@ class TelegramController extends Controller
     }
     public function example_command()
     {
-        $update = Telegram::commandsHandler(true); 
+        $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
     }
     public function start()
     {
-        $update = Telegram::commandsHandler(true); 
+        $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('lang', $update);
     }
     public function one()
@@ -139,13 +139,13 @@ class TelegramController extends Controller
     public function english()
     {
         \App::setLocale('en');
-        $update = Telegram::commandsHandler(true); 
+        $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function arabic()
     {
         \App::setLocale('ar');
-        $update = Telegram::commandsHandler(true); 
+        $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
     }
     ////////////////////////////////////////////////////

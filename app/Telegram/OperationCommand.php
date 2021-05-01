@@ -19,6 +19,6 @@ class OperationCommand extends Command
     {
         $this->replyWithMessage(['text' => trans('telegram.operation')]);
 
-        //$this->triggerCommand('operation');
+        $this->triggerCommand('example');
     }
 }
