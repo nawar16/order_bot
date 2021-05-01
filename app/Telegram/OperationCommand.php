@@ -19,8 +19,7 @@ class OperationCommand extends Command
     {
         $this->replyWithMessage(['text' => trans('telegram.operation')]);
 
-        /*
-                $keyboard = [
+        $keyboard = [
             ['/one', '/two', '/three']
         ];
         $this->reply_markup = Keyboard::make([
@@ -29,7 +28,6 @@ class OperationCommand extends Command
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
         ]);
-        */
         //$this->triggerCommand('operation');
     }
 }
