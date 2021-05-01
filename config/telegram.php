@@ -118,7 +118,7 @@ return [
     'commands'                     => [
         Telegram\Bot\Commands\HelpCommand::class,
         App\Telegram\ExampleCommand::class,
-        App\Telegram\LangCommand::class,
+        App\Telegram\StartCommand::class,
         App\Telegram\OperationCommand::class,
     ],
 

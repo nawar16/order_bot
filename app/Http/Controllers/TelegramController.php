@@ -20,15 +20,15 @@ class TelegramController extends Controller
     public function __construct(){
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-        $keyboard = [
-            ['/one', '/two', '/three', '/Operation']
+        /*$keyboard = [
+            ['/Arabic', '/English']
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
-        ]);
+        ]);*/
     }
     public function getMe(){
         $response = $this->telegram->getMe();
@@ -58,10 +58,7 @@ class TelegramController extends Controller
 
         //calling the appropriate method based on the user command
         switch ($this->text) {
-            /*case '/start':
-                $this->start();
-                break;*/
-            case '/lang':
+            case '/start':
                 $this->start();
                 break;
             case '/one':
@@ -72,9 +69,6 @@ class TelegramController extends Controller
                 break;
             case '/three':
                 $this->three();
-                break;
-            case '/example':
-                $this->example_command();
                 break;
             case '/English':
                 $this->english();
@@ -99,7 +93,6 @@ class TelegramController extends Controller
         $message .= '/one' . chr(10);
         $message .= '/two' . chr(10);
         $message .= '/three' . chr(10);
-        $message .= '/example' . chr(10);
  
         $this->sendMessage($message);
     }
@@ -119,7 +112,7 @@ class TelegramController extends Controller
     public function start()
     {
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('lang', $update);
+        return $this->telegram->triggerCommand('start', $update);
     }
     public function one()
     {
