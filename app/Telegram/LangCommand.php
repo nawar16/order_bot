@@ -37,15 +37,6 @@ class LangCommand extends Command
             $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
         }*/
 
-        $keyboard = [
-            ['/English', '/Arabic']
-        ];
-        $this->reply_markup = Keyboard::make([
-            'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true,
-            'hide_keyboard'=> true
-        ]);
         // Reply with the commands list
         //$this->replyWithMessage(['text' => $response]);
 
