@@ -114,17 +114,17 @@ class TelegramController extends Controller
     }
     public function one()
     {
-        $message = __('telegram.you-enter-one');
+        $message = __('telegram.you_enter_one');
         $this->sendMessage($message);
     }
     public function two()
     {
-        $message = __('telegram.you-enter-two');
+        $message = __('telegram.you_enter_two');
         $this->sendMessage($message);
     }
     public function three()
     {
-        $message = __('telegram.you-enter-three');
+        $message = __('telegram.you_enter_three');
         $this->sendMessage($message);
     }
     public function english()
