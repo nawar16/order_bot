@@ -32,13 +32,22 @@ class LangCommand extends Command
 
             Log::info('show keyboard...');
 
+            $options = [
+                ['/Arabic', '/English']
+            ];
+            $keyboard = Keyboard::make([
+                'keyboard' => $options, 
+                'resize_keyboard' => true, 
+                'one_time_keyboard' => true,
+                'hide_keyboard'=> true
+            ]);
 
-            $keyboard = Keyboard::make()
+            /*$keyboard = Keyboard::make()
                 ->inline()
                 ->row(
                     Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
                     Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
-                );
+                );*/
 
             $this->replyWithMessage([
                 'text'         => 'Hello! Welcome to our bot, chose your language : ',
