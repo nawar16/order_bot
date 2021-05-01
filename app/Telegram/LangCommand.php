@@ -36,7 +36,7 @@ class LangCommand extends Command
             /*$options = [
                 ['/Arabic', '/English']
             ];*/
-            $options = array('inline_keyboard'=>array(
+            /*$options = array('inline_keyboard'=>array(
                 array(
                     array('text'=>'Arabic','callback_data'=>'key=arabic'),
                     array('text'=>'English','callback_data'=>'key=english')
@@ -46,14 +46,14 @@ class LangCommand extends Command
                 'resize_keyboard' => true, 
                 'one_time_keyboard' => true,
                 'hide_keyboard'=> true
-            ]);
+            ]);*/
 
-            /*$keyboard = Keyboard::make()
+            $keyboard = Keyboard::make()
                 ->inline()
                 ->row(
                     Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
                     Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
-                );*/
+                );
 
             $this->replyWithMessage([
                 'text'         => 'Hello! Welcome to our bot, chose your language : ',
@@ -70,25 +70,12 @@ class LangCommand extends Command
                     'text' => $update->callbackQuery->data
                 ]);
             } else {
-                $options = array('inline_keyboard'=>array(
-                    array(
-                        array('text'=>'Arabic','callback_data'=>'key=arabic'),
-                        array('text'=>'English','callback_data'=>'key=english')
-                    )));
-                $keyboard = Keyboard::make([
-                    'keyboard' => $options, 
-                    'resize_keyboard' => true, 
-                    'one_time_keyboard' => true,
-                    'hide_keyboard'=> true
-                ]);
-    
-                /*$keyboard = Keyboard::make()
-                    ->inline()
-                    ->row(
-                        Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
-                        Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
-                    );*/
-    
+                $keyboard = Keyboard::make()
+                ->inline()
+                ->row(
+                    Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
+                    Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
+                );
                 $this->replyWithMessage([
                     'text'         => 'Hello! Welcome to our bot, chose your language : ',
                     'reply_markup' => $keyboard
