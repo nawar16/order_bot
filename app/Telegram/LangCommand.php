@@ -34,6 +34,6 @@ class LangCommand extends Command
             'text' => 'Hello World', 
             'reply_markup' => $reply_markup
         ]);
-        $this->triggerCommand('operation');
+        //$this->triggerCommand('operation');
     }
 }
