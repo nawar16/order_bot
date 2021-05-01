@@ -17,11 +17,22 @@ class OperationCommand extends Command
      */
     public function handle()
     {
-        // This will send a message using `sendMessage` method behind the scenes to
-        // the user/chat id who triggered this command.
-        // `replyWith<Message|Photo|Audio|Video|Voice|Document|Sticker|Location|ChatAction>()` all the available methods are dynamically
-        // handled when you replace `send<Method>` with `replyWith` and use the same parameters - except chat_id does NOT need to be included in the array.
         $this->replyWithMessage(['text' => trans('telegram.operation')]);
-
+        $keyboard = [
+            ['/one', '/two', '/three', '/example']
+        ];
+        
+        $reply_markup = $this->getTelegram()->replyKeyboardMarkup([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true,
+            'hide_keyboard'=> true
+        ]);
+        
+        $response = $this->getTelegram()->sendMessage([
+            'chat_id' => 'CHAT_ID', 
+            'text' => 'Hello World', 
+            'reply_markup' => $reply_markup
+        ]);
     }
 }

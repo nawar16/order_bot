@@ -21,7 +21,7 @@ class TelegramController extends Controller
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         $keyboard = [
-            ['/one', '/two', '/three', '/example']
+            ['/one', '/two', '/three']
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
