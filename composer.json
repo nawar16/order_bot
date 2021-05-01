@@ -46,9 +46,7 @@
             "database/factories"
         ],
         "files": [
-            "app/Telegram/ExampleCommand.php",
-            "app/Telegram/LangCommand.php",
-            "app/Telegram/OperationCommand.php"
+            "app/Telegram/ExampleCommand.php"
         ]
     },
     "autoload-dev": {
