@@ -5,6 +5,7 @@ namespace App\Telegram;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Illuminate\Support\Facades\Log;
+use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 
 class LangCommand extends Command
 {
