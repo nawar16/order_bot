@@ -34,7 +34,7 @@ class StartCommand extends Command
         $updates = $this->telegram->getWebhookUpdates();
 
         $chat_id = $updates["message"]["chat"]["id"];
-        $this->text = $request['message']['text'];
+        $this->text = $updates['message']['text'];
 
         $this->replyWithMessage([
             'chat_id' => $chat_id,
@@ -46,7 +46,7 @@ class StartCommand extends Command
         $updates = $this->telegram->getWebhookUpdates();
 
         $chat_id = $updates["message"]["chat"]["id"];
-        $this->text = $request['message']['text'];
+        $this->text = $updates['message']['text'];
 
                 
                 switch ($this->text) {
