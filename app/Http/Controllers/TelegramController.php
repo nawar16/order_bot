@@ -21,7 +21,7 @@ class TelegramController extends Controller
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         $keyboard = [
-            ['/one', '/two', '/three']
+            ['/one', '/two', '/three', '/Operation']
         ];
         $this->reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
@@ -29,7 +29,6 @@ class TelegramController extends Controller
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
         ]);
-        
     }
     public function getMe(){
         $response = $this->telegram->getMe();
@@ -82,7 +81,10 @@ class TelegramController extends Controller
                 break;
             case '/Arabic':
                 $this->arabic();
-                break;    
+                break;   
+            case  '/Operation':
+                $this->operation();
+                break;
             default:
                 $this->showMenu();
         }
@@ -104,6 +106,11 @@ class TelegramController extends Controller
 
  
     //////////////////////////Handling Input////////////////////////// 
+    public function operation()
+    {
+        $update = Telegram::commandsHandler(true); 
+        return $this->telegram->triggerCommand('operation', $update);
+    }
     public function example_command()
     {
         $update = Telegram::commandsHandler(true); 

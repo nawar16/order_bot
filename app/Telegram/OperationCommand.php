@@ -17,43 +17,19 @@ class OperationCommand extends Command
      */
     public function handle()
     {
-       // $this->replyWithMessage(['text' => trans('telegram.operation')]);
-        $update = $this->telegram->getWebhookUpdate();
-        $keyboard = Keyboard::make()
-        ->inline()
-        ->row(
-            Keyboard::inlineButton(['text' => 'One', 'callback_data' => '/One']),
-            Keyboard::inlineButton(['text' => 'Two', 'callback_data' => '/Two']),
-            Keyboard::inlineButton(['text' => 'Three', 'callback_data' => '/Three'])
-        );
+        $this->replyWithMessage(['text' => trans('telegram.operation')]);
 
-        Log::info('handle');
-        Log::info($update);
-
-        if ($update->isType('callback_query')) {
-            Log::info('...is callback');
-            $query = $update->getCallbackQuery();
-            $data  = $query->getData();
-            $chid = $query->getFrom()->getId();
-        
-            $this->replyWithMessage([
-                'chat_id' => $chid,
-                'text' => 'Here is the callback: ' . $data,
-                'reply_markup' => $keyboard
-            ]);
-
-        } else {
-
-            Log::info('show keyboard...');
-
-            $chat_id = $update["message"]["chat"]["id"];
-
-            $response = $this->replyWithMessage([
-                'chat_id' => $chat_id,
-                'text' => trans('telegram.operation'),
-                'reply_markup' => $keyboard
-            ]);
-        }
+        /*
+                $keyboard = [
+            ['/one', '/two', '/three']
+        ];
+        $this->reply_markup = Keyboard::make([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true,
+            'hide_keyboard'=> true
+        ]);
+        */
         //$this->triggerCommand('operation');
     }
 }
