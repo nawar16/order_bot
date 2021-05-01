@@ -108,7 +108,7 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function operation()
     {
-        $update = Telegram::commandsHandler(true); 
+        $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function example_command()
