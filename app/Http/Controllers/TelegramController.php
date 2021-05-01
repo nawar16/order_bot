@@ -59,9 +59,9 @@ class TelegramController extends Controller
 
         //calling the appropriate method based on the user command
         switch ($this->text) {
-            case '/start':
-                $this->start();
-                break;
+            //case '/start':
+                //$this->start();
+                //break;
             case '/one':
                 $this->one();
                 break;
@@ -74,12 +74,12 @@ class TelegramController extends Controller
             case '/example':
                 $this->example_command();
                 break;
-            case '/English':
-                $this->english();
-                break;
-            case '/Arabic':
-                $this->arabic();
-                break;    
+            //case '/English':
+                //$this->english();
+                //break;
+            //case '/Arabic':
+                //$this->arabic();
+                //break;    
             default:
                 $this->showMenu();
         }
