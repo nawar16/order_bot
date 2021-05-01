@@ -61,10 +61,10 @@ class TelegramController extends Controller
         switch ($this->text) {
             /*case '/start':
                 $this->start();
-                break;
+                break;*/
             case '/lang':
                 $this->start();
-                break;*/
+                break;
             case '/one':
                 $this->one();
                 break;

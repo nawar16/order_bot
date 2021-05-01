@@ -4,6 +4,7 @@ namespace App\Telegram;
 
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
+use Illuminate\Support\Facades\Log;
 
 class LangCommand extends Command
 {
@@ -17,23 +18,33 @@ class LangCommand extends Command
      */
     public function handle()
     {
-        $this->replyWithMessage(['text' => 'Hello! Welcome to our bot, chose your language : ']);
-        $keyboard = [
-            ['/Arabic', '/English']
-        ];
-        
-        $reply_markup = $this->getTelegram()->replyKeyboardMarkup([
-            'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true,
-            'hide_keyboard'=> true
-        ]);
-        
-        $response = $this->getTelegram()->sendMessage([
-            'chat_id' => 'CHAT_ID', 
-            'text' => 'Hello World', 
-            'reply_markup' => $reply_markup
-        ]);
+        //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, chose your language : ']);
+        $update = $this->telegram->getWebhookUpdate();
+
+        Log::info('handle');
+        Log::info($update);
+
+        if ($update->isType('callback_query')) {
+            Log::info('...is callback');
+
+        } else {
+
+            Log::info('show keyboard...');
+
+
+            $keyboard = Keyboard::make()
+                ->inline()
+                ->row(
+                    Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
+                    Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
+                );
+
+            $this->replyWithMessage([
+                'chat_id'      => $this->dataRequest->chat()->id(),
+                'text'         => 'Hello! Welcome to our bot, chose your language : ',
+                'reply_markup' => $keyboard
+            ]);
+        }
         //$this->triggerCommand('operation');
     }
 }
