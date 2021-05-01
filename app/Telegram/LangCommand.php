@@ -29,7 +29,7 @@ class LangCommand extends Command
         // This will prepare a list of available commands and send the user.
         // First, Get an array of all registered commands
         // They'll be in 'command-name' => 'Command Handler Class' format.
-        $commands = $this->getTelegram()->getCommands();
+        //$commands = $this->getTelegram()->getCommands();
 
         // Build the list
         /*$response = '';
@@ -37,7 +37,7 @@ class LangCommand extends Command
             $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
         }*/
 
-        $keyboard = [
+        /*$keyboard = [
             ['/English', '/Arabic']
         ];
         $this->reply_markup = Keyboard::make([
@@ -45,7 +45,7 @@ class LangCommand extends Command
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
-        ]);
+        ]);*/
         // Reply with the commands list
         //$this->replyWithMessage(['text' => $response]);
 
@@ -53,6 +53,6 @@ class LangCommand extends Command
         // When you want to chain multiple commands within one or process the request further.
         // The method supports second parameter arguments which you can optionally pass, By default
         // it'll pass the same arguments that are received for this command originally.
-        //$this->triggerCommand('subscribe');
+        $this->triggerCommand('operation');
     }
 }

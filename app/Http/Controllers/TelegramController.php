@@ -63,7 +63,7 @@ class TelegramController extends Controller
                 $this->start();
                 break;
             case '/lang':
-                $this->lang();
+                $this->start();
                 break;
             case '/one':
                 $this->one();
@@ -77,12 +77,12 @@ class TelegramController extends Controller
             case '/example':
                 $this->example_command();
                 break;
-            //case '/English':
-                //$this->english();
-                //break;
-            //case '/Arabic':
-                //$this->arabic();
-                //break;    
+            case '/English':
+                $this->english();
+                break;
+            case '/Arabic':
+                $this->arabic();
+                break;    
             default:
                 $this->showMenu();
         }
