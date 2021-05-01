@@ -33,7 +33,7 @@ class StartCommand extends Command
 
         $updates = $this->telegram->getWebhookUpdates();
 
-        $chat_id = $update["message"]["chat"]["id"];
+        $chat_id = $updates["message"]["chat"]["id"];
         $this->text = $request['message']['text'];
 
         $this->replyWithMessage([
@@ -45,7 +45,7 @@ class StartCommand extends Command
 ///////////////////////////////////////////////////////////////////////////////////////////
         $updates = $this->telegram->getWebhookUpdates();
 
-        $chat_id = $update["message"]["chat"]["id"];
+        $chat_id = $updates["message"]["chat"]["id"];
         $this->text = $request['message']['text'];
 
                 
@@ -65,13 +65,13 @@ class StartCommand extends Command
     public function english()
     {
         \App::setLocale('en');
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $update);
+        $updates = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $updates);
     }
     public function arabic()
     {
         \App::setLocale('ar');
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $update);
+        $updates = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $updates);
     }
 }
