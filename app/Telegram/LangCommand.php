@@ -47,7 +47,7 @@ class LangCommand extends Command
 
             Log::info('show keyboard...');
 
-            $chat_id = $result["message"]["chat"]["id"];
+            $chat_id = $update["message"]["chat"]["id"];
 
             $response = $this->replyWithMessage([
                 'chat_id' => $chat_id,
