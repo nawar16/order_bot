@@ -20,7 +20,6 @@ class LangCommand extends Command
      */
     public function handle()
     {
-        //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, chose your language : ']);
         $update = $this->telegram->getWebhookUpdate();
 
         Log::info('handle');
@@ -32,21 +31,6 @@ class LangCommand extends Command
         } else {
 
             Log::info('show keyboard...');
-
-            /*$options = [
-                ['/Arabic', '/English']
-            ];*/
-            /*$options = array('inline_keyboard'=>array(
-                array(
-                    array('text'=>'Arabic','callback_data'=>'key=arabic'),
-                    array('text'=>'English','callback_data'=>'key=english')
-                )));
-            $keyboard = Keyboard::make([
-                'keyboard' => $options, 
-                'resize_keyboard' => true, 
-                'one_time_keyboard' => true,
-                'hide_keyboard'=> true
-            ]);*/
 
             $keyboard = Keyboard::make()
                 ->inline()
@@ -81,8 +65,6 @@ class LangCommand extends Command
                     'reply_markup' => $keyboard
                 ]);
             }
-
-
         }
         //$this->triggerCommand('operation');
     }
