@@ -21,54 +21,39 @@ class LangCommand extends Command
     public function handle()
     {
         $update = $this->telegram->getWebhookUpdate();
+        $keyboard = Keyboard::make()
+        ->inline()
+        ->row(
+            Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
+            Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
+        );
 
         Log::info('handle');
         Log::info($update);
 
         if ($update->isType('callback_query')) {
             Log::info('...is callback');
-            $this->telegram->sendMessage([
-                'chat_id' => $update->callbackQuery->from->id,
-                'text' => $update->callbackQuery->data
+            $query = $update->getCallbackQuery();
+            $data  = $query->getData();
+            $chid = $query->getFrom()->getId();
+        
+            $this->replyWithMessage([
+                'chat_id' => $chid,
+                'text' => 'Here is the callback: ' . $data,
+                'reply_markup' => $keyboard
             ]);
 
         } else {
 
             Log::info('show keyboard...');
 
-            $keyboard = Keyboard::make()
-                ->inline()
-                ->row(
-                    Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
-                    Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
-                );
+            $chat_id = $result["message"]["chat"]["id"];
 
-            $this->replyWithMessage([
-                'text'         => 'Hello! Welcome to our bot, chose your language : ',
+            $response = $this->replyWithMessage([
+                'chat_id' => $chat_id,
+                'text' => 'Hello! Welcome to our bot, chose your language : ',
                 'reply_markup' => $keyboard
             ]);
-
-            ////////////////////////////// handle inline button //////////////////////////////
-            $update = $this->telegram->getWebhookUpdate();
-
-            if ($update->isType('callback_query')) {
-    
-                $this->telegram->sendMessage([
-                    'chat_id' => $update->callbackQuery->from->id,
-                    'text' => $update->callbackQuery->data
-                ]);
-            } else {
-                $keyboard = Keyboard::make()
-                ->inline()
-                ->row(
-                    Keyboard::inlineButton(['text' => 'Arabic', 'callback_data' => '/Arabic']),
-                    Keyboard::inlineButton(['text' => 'English', 'callback_data' => '/English'])
-                );
-                $this->replyWithMessage([
-                    'text'         => 'Hello! Welcome to our bot, chose your language : ',
-                    'reply_markup' => $keyboard
-                ]);
-            }
         }
         //$this->triggerCommand('operation');
     }
