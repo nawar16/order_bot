@@ -41,7 +41,6 @@ class LangCommand extends Command
                 );
 
             $this->replyWithMessage([
-                'chat_id'      => $this->dataRequest->chat()->id(),
                 'text'         => 'Hello! Welcome to our bot, chose your language : ',
                 'reply_markup' => $keyboard
             ]);
