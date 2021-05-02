@@ -102,17 +102,17 @@ class TelegramController extends Controller
     public function one()
     {
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('example', $update);
+        return $this->telegram->triggerCommand('one', $update);
     }
     public function two()
     {
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('example', $update);
+        return $this->telegram->triggerCommand('one', $update);
     }
     public function three()
     {
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('example', $update);
+        return $this->telegram->triggerCommand('one', $update);
     }
     public function english()
     {
