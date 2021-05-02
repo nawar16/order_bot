@@ -22,25 +22,7 @@ class ExampleCommand extends Command
         $chat_id = $updates['message']['chat']['id'];
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
-        switch ($text) {
-            case '/Arabic':
-                \App::setLocale('ar');
-                break;
-            case '/English':
-                \App::setLocale('en');
-                break;
-            default:
-                \App::setLocale('en');
-        }
-
-        $updates = $this->telegram->getWebhookUpdates();
-
-        $chat_id = $updates['message']['chat']['id'];
-        $username = $updates['message']['from']['username'];
-        $text = $updates['message']['text'];
-        $this->triggerCommand('one', $updates);
-
-        //$this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
+        $this->replyWithMessage(['text' => $text]);
 
         //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
 
