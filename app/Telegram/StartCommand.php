@@ -31,6 +31,12 @@ class StartCommand extends Command
                 ],
             ]
         ]);*/
+        $inline_keyboard = [
+            [
+                [ "text" => "عربي", "callback_data" => "Arabic" ],
+                [ "text" => "English", "callback_data" => "English" ],
+            ]
+        ];
         $keyboard = [
             array(
                 array('text'=>'عربي','callback_data'=>'Arabic'),
@@ -38,7 +44,8 @@ class StartCommand extends Command
             )
         ];
         $reply_markup = Keyboard::make([
-            'keyboard' => $keyboard, 
+            'inline_keyboard' => $inline_keyboard,
+            //'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
