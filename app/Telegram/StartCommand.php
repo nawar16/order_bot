@@ -24,16 +24,21 @@ class StartCommand extends Command
         /*$keyboard = [
             ['/Arabic', '/English']
         ];*/
-        $keyboard = json_encode([
+        /*$keyboard = json_encode([
             "inline_keyboard" => [
                 [
                     [ "text" => "عربي", "callback_data" => "/Arabic" ],
                     [ "text" => "English", "callback_data" => "/English" ],
                 ],
             ]
-        ]);
+        ]);*/
+        $keyboard = array('inline_keyboard'=>array(
+            array(
+                array('text'=>'عربي','callback_data'=>'key=/Arabic'),
+                array('text'=>'English','callback_data'=>'key=/English')
+            )));
         $reply_markup = Keyboard::make([
-            'keyboard' => $keyboard, 
+            'inline_keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
