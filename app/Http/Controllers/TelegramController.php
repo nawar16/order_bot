@@ -19,8 +19,7 @@ class TelegramController extends Controller
     public function __construct(){
         //Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-        $lang =  Setting::first()->locale;
-        \Session::put('lang', $lang);
+        \Session::put('lang', 'en');
         $this->middleware("Locale");
     }
     public function getMe(){
@@ -139,9 +138,18 @@ class TelegramController extends Controller
     {
         \App::setLocale('en');
         \Session::put('lang', 'en');
-        Setting::first()->update([
-            'locale' => 'en'
-        ]);
+        $setting = Setting::where('chat_id', $this->chat_id)->first();
+        if(!is_null($setting))
+        {
+            $setting->update([
+                'locale' => 'en'
+            ]);
+        } else{
+            Setting::create([
+                'chat_id' => $this->chat_id,
+                'locale' => 'en'
+            ]);
+        }
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
@@ -149,9 +157,18 @@ class TelegramController extends Controller
     {
         \App::setLocale('ar');
         \Session::put('lang', 'ar');
-        Setting::first()->update([
-            'locale' => 'ar'
-        ]);
+        $setting = Setting::where('chat_id', $this->chat_id)->first();
+        if(!is_null($setting))
+        {
+            $setting->update([
+                'locale' => 'ar'
+            ]);
+        } else{
+            Setting::create([
+                'chat_id' => $this->chat_id,
+                'locale' => 'ar'
+            ]);
+        }
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
