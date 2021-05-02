@@ -20,7 +20,7 @@ class OperationCommand extends Command
     public function handle()
     {
         $keyboard = [
-            ['/One', '/Two' , '/Three']
+            ['One', 'Two' , 'Three']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 

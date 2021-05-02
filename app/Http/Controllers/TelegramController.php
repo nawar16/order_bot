@@ -68,22 +68,22 @@ class TelegramController extends Controller
                 case 'English':
                     $this->english();
                     break;
-                case '/One':
+                case 'One':
                     $this->one();
                     break;
-                case '/Two':
+                case 'Two':
                     $this->two();
                     break;
-                case '/Three':
+                case 'Three':
                     $this->three();
                     break;
-                case '/Dep1':
+                case 'Dep1':
                     $this->dep1();
                     break;
-                case '/Dep2':
+                case 'Dep2':
                     $this->dep2();
                     break;
-                case '/Dep3':
+                case 'Dep3':
                     $this->dep3();
                     break;
                 default:
