@@ -64,6 +64,12 @@ class TelegramController extends Controller
             case '/operation':
                 $this->operation();
                 break;
+            case '/Arabic':
+                $this->arabic();
+                break;
+            case '/English':
+                $this->english();
+                break;
             default:
                 $this->showMenu();
         }

@@ -36,32 +36,6 @@ class StartCommand extends Command
         ]);
 
         ///////////////////////////////////////////////////////////////////////////////////////////
-        $updates = $this->telegram->getWebhookUpdates();
-        $chat_id = $updates["message"]["chat"]["id"];
-        $text = $updates['message']['text'];
-        switch ($text) {
-            case '/English':
-                $this->english();
-                break;
-            case '/Arabic':
-                $this->arabic();
-                break;   
-            default:
-                $this->english();
-        }
-
         //$this->triggerCommand('operation');
-    }
-    public function english()
-    {
-        \App::setLocale('en');
-        $updates = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $updates);
-    }
-    public function arabic()
-    {
-        \App::setLocale('ar');
-        $updates = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $updates);
     }
 }
