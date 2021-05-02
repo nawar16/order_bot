@@ -17,8 +17,7 @@ class OneCommand extends Command
      */
     public function handle()
     {
-        $telegram = new Api();
-
+        $telegram = $this->telegram;
         // First, we get the update.
         $result = $telegram->getWebhookUpdate();
 
