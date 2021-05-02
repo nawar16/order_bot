@@ -220,8 +220,9 @@ class TelegramController extends Controller
 
     public function test()
     {
-        $updates = $this->telegram->getWebhookUpdates();
-        dd($updates);
+        return $this->telegram->handle();
+        //$updates = $this->telegram->getWebhookUpdates();
+        //dd($updates);
     }
     public function check($chat_id)
     {
@@ -237,7 +238,5 @@ class TelegramController extends Controller
         $result = ($this->telegram)->sendMessage($data);
         return $result;
     }
-    
-
 }
     
