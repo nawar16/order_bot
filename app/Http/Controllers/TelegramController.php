@@ -22,7 +22,7 @@ class TelegramController extends Controller
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         $lang =  Setting::first()->locale;
         \Session::put('lang', $lang);
-        $this->middleware("Locale");
+        //$this->middleware("Locale");
     }
     public function getMe(){
         $response = $this->telegram->getMe();
