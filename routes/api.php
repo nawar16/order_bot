@@ -33,4 +33,4 @@ Route::get('/updated-activity', 'TelegramController@updatedActivity');
 Route::post('/getUpdates', 'TelegramController@getUpdates');
 Route::get('/test', 'TelegramController@test');
 Route::post('/sendMessage', 'TelegramController@sendMessage1');
-Route::get('/check', 'TelegramController@check');
+Route::get('/check/{chat_id}', 'TelegramController@check');

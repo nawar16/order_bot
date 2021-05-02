@@ -223,12 +223,12 @@ class TelegramController extends Controller
         $updates = $this->telegram->getWebhookUpdates();
         dd($updates);
     }
-    public function check()
+    public function check($chat_id)
     {
         $message = '/start';
         $parse_html = false;
         $data = [
-            'chat_id' => '294649898',
+            'chat_id' => $chat_id,
             'text' => $message,
             'reply_markup' => $this->reply_markup
         ];
