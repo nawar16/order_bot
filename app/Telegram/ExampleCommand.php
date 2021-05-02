@@ -4,6 +4,7 @@ namespace App\Telegram;
 
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
+use \Telegram as Telegram;
 
 class ExampleCommand extends Command
 {
