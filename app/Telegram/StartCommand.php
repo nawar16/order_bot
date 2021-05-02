@@ -32,11 +32,11 @@ class StartCommand extends Command
                 ],
             ]
         ]);*/
-        $keyboard = array('inline_keyboard'=>array(
+        $keyboard = 
             array(
-                array('text'=>'عربي','callback_data'=>'key=/Arabic'),
-                array('text'=>'English','callback_data'=>'key=/English')
-            )));
+                array('text'=>'عربي','callback_data'=>'/Arabic'),
+                array('text'=>'English','callback_data'=>'/English')
+            );
         $reply_markup = Keyboard::make([
             'inline_keyboard' => $keyboard, 
             'resize_keyboard' => true, 
