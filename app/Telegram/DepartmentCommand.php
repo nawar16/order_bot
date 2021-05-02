@@ -35,6 +35,6 @@ class DepartmentCommand extends Command
             'reply_markup' => $reply_markup
         ]);
     
-        $this->triggerCommand('operation', $updates);
+        //$this->triggerCommand('operation', $updates);
     }
 }

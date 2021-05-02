@@ -159,16 +159,22 @@ class TelegramController extends Controller
     {
         $message = trans('telegram.you_choose_dep1');
         $this->sendMessage($message);
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $update);
     }
     public function dep2()
     {
         $message = trans('telegram.you_choose_dep2');
         $this->sendMessage($message);
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $update);
     }
     public function dep3()
     {
         $message = trans('telegram.you_choose_dep3');
         $this->sendMessage($message);
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $update);
     }
     ////////////////////////////////////////////////////
  
