@@ -51,23 +51,7 @@ class TelegramController extends Controller
         //dd($updates);
 
         //calling the appropriate method based on the user command
-        if($updates->isType('callback_query'))
-        {
-            $callback_query_data = $updates['callback_query']['data'];
-            //dd($callback_query_data);
-            switch($callback_query_data)
-            {
-                case 'Arabic':
-                    $this->arabic();
-                    break;
-                case 'English':
-                    $this->english();
-                    break;
-                default :
-                    $this->english();
-            }
-        }
-        else{
+
             switch ($this->text) {
                 case '/start':
                     $this->start();
@@ -78,10 +62,10 @@ class TelegramController extends Controller
                 case '/departments':
                     $this->departments();
                     break;
-                case '/Arabic':
+                case 'عربي':
                     $this->arabic();
                     break;
-                case '/English':
+                case 'English':
                     $this->english();
                     break;
                 case '/One':
@@ -105,7 +89,6 @@ class TelegramController extends Controller
                 default:
                     $this->showMenu();
             }
-        }
     }
     public function showMenu($info = null)
     {

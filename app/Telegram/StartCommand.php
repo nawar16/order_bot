@@ -20,18 +20,10 @@ class StartCommand extends Command
      */
     public function handle()
     {
-        /*$keyboard = [
-            ['/Arabic', '/English']
-        ];*/
-        /*$keyboard = json_encode([
-            "inline_keyboard" => [
-                [
-                    [ "text" => "عربي", "callback_data" => "/Arabic" ],
-                    [ "text" => "English", "callback_data" => "/English" ],
-                ],
-            ]
-        ]);*/
-        $inline_keyboard = [
+        $keyboard = [
+            ['عربي', 'English']
+        ];
+        /*$inline_keyboard = [
             [
                 [ "text" => "عربي", "callback_data" => "Arabic" ],
                 [ "text" => "English", "callback_data" => "English" ],
@@ -42,16 +34,15 @@ class StartCommand extends Command
                 array('text'=>'عربي','callback_data'=>'Arabic'),
                 array('text'=>'English','callback_data'=>'English')
             )
-        ];
+        ];*/
         $reply_markup = Keyboard::make([
-            'inline_keyboard' => $inline_keyboard,
-            //'keyboard' => $keyboard, 
+            'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
         ]);
         $this->replyWithMessage([
-            'text' => 'Hello! Welcome to our bot, chose your language : ',
+            'text' => 'Hello! Welcome to our bot, chخose your language : ',
             'reply_markup' => $reply_markup
         ]);
 
