@@ -76,6 +76,15 @@ class TelegramController extends Controller
             case '/Three':
                 $this->three();
                 break;
+            case '/Dep1':
+                $this->dep1();
+                break;
+            case '/Dep2':
+                $this->dep2();
+                break;
+            case '/Dep3':
+                $this->dep3();
+                break;
             default:
                 $this->showMenu();
         }
@@ -145,6 +154,21 @@ class TelegramController extends Controller
         ]);
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
+    }
+    public function dep1()
+    {
+        $message = trans('telegram.you_chose_dep1');
+        $this->sendMessage($message);
+    }
+    public function dep2()
+    {
+        $message = trans('telegram.you_chose_dep2');
+        $this->sendMessage($message);
+    }
+    public function dep3()
+    {
+        $message = trans('telegram.you_chose_dep3');
+        $this->sendMessage($message);
     }
     ////////////////////////////////////////////////////
  
