@@ -36,6 +36,22 @@ class OperationCommand extends Command
         ]);
 
 
-        //$this->triggerCommand('example');
+        $updates = $this->telegram->getWebhookUpdates();
+
+        $chat_id = $updates['message']['chat']['id'];
+        $username = $updates['message']['from']['username'];
+        $text = $updates['message']['text'];
+ 
+        switch ($text) {
+            case '/One':
+                $this->triggerCommand('example', $updates);
+                break;
+            case '/Two':
+                $this->triggerCommand('example', $updates);
+                break;
+            default:
+                $this->triggerCommand('example', $updates);
+        }
+    
     }
 }
