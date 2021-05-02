@@ -120,6 +120,7 @@ return [
         App\Telegram\ExampleCommand::class,
         App\Telegram\StartCommand::class,
         App\Telegram\OperationCommand::class,
+        App\Telegram\OneCommand::class,
     ],
 
     /*
