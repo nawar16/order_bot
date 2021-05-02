@@ -17,7 +17,8 @@ class ExampleCommand extends Command
      */
     public function handle()
     {
-        $updates = $this->telegram->getWebhookUpdates();
+        $updates =  Telegram::getWebhookUpdates();
+        
 
         $chat_id = $updates['message']['chat']['id'];
         $username = $updates['message']['from']['username'];
