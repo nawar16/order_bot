@@ -115,6 +115,7 @@ class TelegramController extends Controller
             'hide_keyboard'=> true
         ]);
         $this->telegram->sendMessage([
+            'chat_id' => $this->chat_id,
             'text' => 'Hello! Welcome to our bot, choose your language : ',
             'reply_markup' => $reply_markup
         ]);
