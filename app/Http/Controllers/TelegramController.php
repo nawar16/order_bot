@@ -9,6 +9,7 @@ use \Telegram as Telegram;
 use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 use Carbon\Carbon;
 use Exception;
+use App\Models\Setting;
 
 class TelegramController extends Controller
 {
@@ -19,7 +20,8 @@ class TelegramController extends Controller
     public function __construct(){
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-        //$lang = 'ar';
+        $lang =  Setting::first()->locale;
+        \Session::put('lang', $lang);
         $this->middleware("Locale");
     }
     public function getMe(){
@@ -128,27 +130,30 @@ class TelegramController extends Controller
     public function three()
     {
         \Session::put('lang', 'ar');
-        app()->setLocale('ar');
-        //$lang = 'ar';
-        //$this->middleware("Locale");
+        Setting::first()->update([
+            'locale' => 'ar'
+        ]);
+        \App::setLocale('ar');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
     }
     public function english()
     {
         \App::setLocale('en');
-        //$lang = 'en';
-        //$this->middleware("Locale:$lang");
         \Session::put('lang', 'en');
+        Setting::first()->update([
+            'locale' => 'en'
+        ]);
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function arabic()
     {
         \App::setLocale('ar');
-        //$lang = 'ar';
-        //$this->middleware("Locale:$lang");
         \Session::put('lang', 'ar');
+        Setting::first()->update([
+            'locale' => 'ar'
+        ]);
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
     }
