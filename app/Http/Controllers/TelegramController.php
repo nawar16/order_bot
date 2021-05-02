@@ -105,8 +105,21 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function start()
     {
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('start', $update);
+        $keyboard = [
+            ['عربي', 'English']
+        ];
+        $reply_markup = Keyboard::make([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true,
+            'hide_keyboard'=> true
+        ]);
+        $this->replyWithMessage([
+            'text' => 'Hello! Welcome to our bot, choose your language : ',
+            'reply_markup' => $reply_markup
+        ]);
+        //$update = $this->telegram->getWebhookUpdates();
+        //return $this->telegram->triggerCommand('start', $update);
     }
     public function operation()
     {
