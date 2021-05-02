@@ -42,7 +42,7 @@ class OperationCommand extends Command
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
  
-        $this->triggerCommand('example', $updates);
+        //$this->triggerCommand('example', $updates);
 
     
     }
