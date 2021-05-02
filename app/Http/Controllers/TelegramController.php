@@ -114,6 +114,7 @@ class TelegramController extends Controller
 
     public function one()
     {
+
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
     }
@@ -124,6 +125,8 @@ class TelegramController extends Controller
     }
     public function three()
     {
+        \App::setLocale('ar');
+        \Session::put('lang', 'ar');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
     }
