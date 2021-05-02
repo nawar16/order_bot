@@ -10,7 +10,7 @@ use \Telegram as Telegram;
 class DepartmentCommand extends Command
 {
 
-    protected $name = "department";
+    protected $name = "departments";
 
     protected $description = "Available departments";
 
