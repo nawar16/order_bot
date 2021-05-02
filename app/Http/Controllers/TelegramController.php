@@ -95,8 +95,8 @@ class TelegramController extends Controller
             $message .= $info . chr(10);
         }
         $message .= '/start' . chr(10);
-        $message .= '/operation' . chr(10);
         $message .= '/departments' . chr(10);
+        $message .= '/operation' . chr(10);
  
         $this->sendMessage($message);
     }

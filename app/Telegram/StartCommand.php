@@ -18,7 +18,7 @@ class StartCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle($arguments)
     {
         $keyboard = [
             ['عربي', 'English']
