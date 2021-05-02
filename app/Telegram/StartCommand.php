@@ -42,7 +42,7 @@ class StartCommand extends Command
             'hide_keyboard'=> true
         ]);
         $this->replyWithMessage([
-            'text' => 'Hello! Welcome to our bot, chخose your language : ',
+            'text' => 'Hello! Welcome to our bot, choose your language : ',
             'reply_markup' => $reply_markup
         ]);
 
