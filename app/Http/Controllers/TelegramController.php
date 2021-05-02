@@ -19,6 +19,8 @@ class TelegramController extends Controller
     public function __construct(){
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        //$lang = 'ar';
+        $this->middleware("Locale");
     }
     public function getMe(){
         $response = $this->telegram->getMe();
@@ -125,18 +127,18 @@ class TelegramController extends Controller
     }
     public function three()
     {
-        app()->setLocale('ar');
-        $lang = 'ar';
-        $this->middleware("Locale:$lang");
         \Session::put('lang', 'ar');
+        app()->setLocale('ar');
+        //$lang = 'ar';
+        //$this->middleware("Locale");
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
     }
     public function english()
     {
         \App::setLocale('en');
-        $lang = 'en';
-        $this->middleware("Locale:$lang");
+        //$lang = 'en';
+        //$this->middleware("Locale:$lang");
         \Session::put('lang', 'en');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
@@ -144,8 +146,8 @@ class TelegramController extends Controller
     public function arabic()
     {
         \App::setLocale('ar');
-        $lang = 'ar';
-        $this->middleware("Locale:$lang");
+        //$lang = 'ar';
+        //$this->middleware("Locale:$lang");
         \Session::put('lang', 'ar');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);

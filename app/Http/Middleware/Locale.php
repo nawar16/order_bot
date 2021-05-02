@@ -12,9 +12,9 @@ class Locale{
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-    public function handle($request, Closure $next, string $lang)
+    public function handle($request, Closure $next)
     {
-        app()->setLocale($lang);
+        app()->setLocale(\Session::get('lang'));
 
         return $next($request);
     }
