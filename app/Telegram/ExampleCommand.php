@@ -22,7 +22,22 @@ class ExampleCommand extends Command
         $chat_id = $updates['message']['chat']['id'];
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
+
         $this->replyWithMessage(['text' => $text]);
+        switch($text){
+            case '/One':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
+                break;
+            case '/Two':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_two')]);
+                break;
+            case '/Three':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+                break;
+            default:
+            $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+
+        }
 
         //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
 
