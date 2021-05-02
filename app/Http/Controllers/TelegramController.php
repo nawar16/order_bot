@@ -99,7 +99,7 @@ class TelegramController extends Controller
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
         ]);
-        $this->replyWithMessage([
+        $this->telegram->sendMessage([
             'text' => 'Hello! Welcome to our bot, chose your language : ',
             'reply_markup' => $reply_markup
         ]);
