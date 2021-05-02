@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Route;
 use \Telegram as Telegram;
 
