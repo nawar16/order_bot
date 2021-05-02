@@ -14,7 +14,12 @@ class Locale{
 	 */
     public function handle($request, Closure $next)
     {
-        app()->setLocale(\Session::get('lang'));
+		if (session()->has('lang')) {
+			app()->setLocale(session()->get('lang'));
+		} else {
+			session()->put('lang', 'en');
+			app()->setLocale(session()->get('lang'));
+		}
 
         return $next($request);
     }
