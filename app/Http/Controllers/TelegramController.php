@@ -88,27 +88,21 @@ class TelegramController extends Controller
 
  
     //////////////////////////Handling Input////////////////////////// 
-    public function operation()
-    {
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $update);
-    }
-    public function example_command()
-    {
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('example', $update);
-    }
     public function start()
     {
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('start', $update);
     }
+    public function operation()
+    {
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('operation', $update);
+    }
+
     public function one()
     {
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
-        //$message = trans('telegram.you_enter_one');
-        //$this->sendMessage($message);
     }
     public function two()
     {

@@ -30,7 +30,7 @@ class ExampleCommand extends Command
                 $this->replyWithMessage(['text' => trans('telegram.you_enter_two')]);
                 break;
             default:
-            $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+            $this->replyWithMessage(['text' => $text]);
         }
         //$this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
 
