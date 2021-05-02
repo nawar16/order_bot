@@ -18,7 +18,7 @@ class TelegramController extends Controller
     protected $reply_markup;
     protected $chat_id;
     public function __construct(){
-        Telegram::setTimeout(3000);
+        //Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         $lang =  Setting::first()->locale;
         \Session::put('lang', $lang);
