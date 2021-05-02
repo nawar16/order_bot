@@ -121,6 +121,7 @@ return [
         App\Telegram\StartCommand::class,
         App\Telegram\OperationCommand::class,
         App\Telegram\OneCommand::class,
+        App\Telegram\DepartmentCommand::class,
     ],
 
     /*

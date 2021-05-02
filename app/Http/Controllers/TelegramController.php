@@ -58,6 +58,9 @@ class TelegramController extends Controller
             case '/operation':
                 $this->operation();
                 break;
+            case '/departments':
+                $this->departments();
+                break;
             case '/Arabic':
                 $this->arabic();
                 break;
@@ -85,6 +88,7 @@ class TelegramController extends Controller
         }
         $message .= '/start' . chr(10);
         $message .= '/operation' . chr(10);
+        $message .= '/departments' . chr(10);
  
         $this->sendMessage($message);
     }
@@ -100,6 +104,11 @@ class TelegramController extends Controller
     {
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
+    }
+    public function departments()
+    {
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('departments', $update);
     }
 
     public function one()
@@ -125,7 +134,7 @@ class TelegramController extends Controller
             'locale' => 'en'
         ]);
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $update);
+        return $this->telegram->triggerCommand('departments', $update);
     }
     public function arabic()
     {
@@ -135,7 +144,7 @@ class TelegramController extends Controller
             'locale' => 'ar'
         ]);
         $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('operation', $update);
+        return $this->telegram->triggerCommand('departments', $update);
     }
     ////////////////////////////////////////////////////
  

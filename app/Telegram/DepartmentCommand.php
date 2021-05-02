@@ -7,12 +7,12 @@ use Telegram\Bot\Commands\Command;
 use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 use \Telegram as Telegram;
 
-class OperationCommand extends Command
+class DepartmentCommand extends Command
 {
 
-    protected $name = "operation";
+    protected $name = "department";
 
-    protected $description = "Available operations";
+    protected $description = "Available departments";
 
     /**
      * @inheritdoc
@@ -20,7 +20,7 @@ class OperationCommand extends Command
     public function handle()
     {
         $keyboard = [
-            ['/One', '/Two' , '/Three']
+            ['/Dep1', '/Dep2' , '/Dep3']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
@@ -31,14 +31,10 @@ class OperationCommand extends Command
 
 
         $this->replyWithMessage([
-            'text' => trans('telegram.operation'),
+            'text' => trans('telegram.departments'),
             'reply_markup' => $reply_markup
         ]);
-
-
- 
-        //$this->triggerCommand('example', $updates);
-
     
+        $this->triggerCommand('operation', $updates);
     }
 }
