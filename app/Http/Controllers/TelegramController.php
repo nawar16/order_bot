@@ -51,7 +51,7 @@ class TelegramController extends Controller
 
         //calling the appropriate method based on the user command
 
-            switch ($this->text) {
+        switch ($this->text) {
                 case '/start':
                     $this->start();
                     break;
@@ -87,7 +87,7 @@ class TelegramController extends Controller
                     break;
                 default:
                     $this->showMenu();
-            }
+        }
     }
     public function showMenu($info = null)
     {
@@ -213,7 +213,7 @@ class TelegramController extends Controller
     }
     public function getUpdates(Request $request){
         $chat_id = $request['message']['chat']['id'];
-        $content = ['chat_id' => $chat_id, 'text' => 'HI'];
+        $content = ['chat_id' => $chat_id, 'text' => $request['message']['text']];
         $this->telegram->sendMessage($content);
     }
 
