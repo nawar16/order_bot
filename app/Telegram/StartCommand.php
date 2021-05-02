@@ -18,12 +18,20 @@ class StartCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle()
+    public function handle($arguments)
     {
 
-        $keyboard = [
+        /*$keyboard = [
             ['/Arabic', '/English']
-        ];
+        ];*/
+        $keyboard = json_encode([
+            "inline_keyboard" => [
+                [
+                    [ "text" => "عربي", "callback_data" => "/Arabic" ],
+                    [ "text" => "English", "callback_data" => "/English" ],
+                ],
+            ]
+        ]);
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 

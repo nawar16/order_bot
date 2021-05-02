@@ -25,13 +25,6 @@ class ExampleCommand extends Command
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
 
-        //$this->replyWithMessage(['text' => $text]);
-        if(\Session::get('lang') == 'ar')
-        {
-            \App::setLocale('ar');
-        } else {
-            \App::setLocale('en');
-        }
         switch($text){
             case '/One':
                 $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
@@ -43,7 +36,7 @@ class ExampleCommand extends Command
                 $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
                 break;
             default:
-            $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+            $this->replyWithMessage(['text' => $text]);
 
         }
 
