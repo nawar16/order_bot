@@ -17,45 +17,43 @@ class OneCommand extends Command
      */
     public function handle()
     {
-        $updates = $this->telegram->getWebhookUpdates();
+        $telegram = new Api();
 
-        $chat_id = $updates['message']['chat']['id'];
-        $username = $updates['message']['from']['username'];
-        $text = $updates['message']['text'];
+        // First, we get the update.
+        $result = $telegram->getWebhookUpdate();
 
-        switch ($text) {
-            case '/One':
-                $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
-                break;
-            case '/Two':
-                $this->replyWithMessage(['text' => trans('telegram.you_enter_two')]);
-                break;
-            case '/Three':
-                $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
-                break;
-            default:
-                $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+        // No problems here...
+        $keyboard = Keyboard::make()
+        ->inline()
+        ->row(
+            Keyboard::inlineButton(['text' => 'One ', 'callback_data' => '/One']),
+            Keyboard::inlineButton(['text' => 'Two', 'callback_data' => '/Two'])
+        );
+
+
+        if ($result->isType('callback_query')) {
+            $query = $result->getCallbackQuery();
+            $data  = $query->getData();
+            $chid = $query->getFrom()->getId();
+
+        // again, you can't get the message object if the object is a callback_query.
+        // in this case the $json variable would be undefined.
+        // $json = json_decode($query->getMessage(), true);
+        $telegram->sendMessage([
+            'chat_id' => $chid,
+            'text' => 'Here is the callback: ' . $data,
+            'reply_markup' => $keyboard
+        ]);
+
+        // Just to make sure that there's a ['message']:
+        } elseif(isset($result["message"])) {
+            $chat_id = $result["message"]["chat"]["id"];
+
+            $response = $telegram->sendMessage([
+                'chat_id' => $chat_id,
+                'text' => 'Hello',
+                'reply_markup' => $keyboard
+            ]);
         }
-
-        
-        
-
-        //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
-
-        //$this->replyWithChatAction(['action' => Actions::TYPING]);
-
-        // This will prepare a list of available commands and send the user.
-        // First, Get an array of all registered commands
-        // They'll be in 'command-name' => 'Command Handler Class' format.
-        /*$commands = $this->getTelegram()->getCommands();
-
-        // Build the list
-        $response = '';
-        foreach ($commands as $name => $command) {
-            $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
-        }
-
-        // Reply with the commands list
-        $this->replyWithMessage(['text' => $response]);*/
     }
 }
