@@ -20,7 +20,7 @@ class TelegramController extends Controller
     protected $chat_id;
     public function __construct(){
         //Telegram::setTimeout(3000);
-        $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'), true);
         $lang =  Setting::first()->locale;
         \Session::put('lang', $lang);
         $this->middleware("Locale");
