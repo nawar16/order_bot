@@ -30,25 +30,15 @@ class StartCommand extends Command
             'one_time_keyboard' => true,
             'hide_keyboard'=> true
         ]);
-
-        $updates = $this->telegram->getWebhookUpdates();
-
-        $chat_id = $updates["message"]["chat"]["id"];
-        $text = $updates['message']['text'];
-
         $this->replyWithMessage([
-            'chat_id' => $chat_id,
             'text' => 'Hello! Welcome to our bot, chose your language : ',
             'reply_markup' => $reply_markup
         ]);
 
-///////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////
         $updates = $this->telegram->getWebhookUpdates();
-
         $chat_id = $updates["message"]["chat"]["id"];
         $text = $updates['message']['text'];
-
-                
         switch ($text) {
             case '/English':
                 $this->english();

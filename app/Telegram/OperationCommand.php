@@ -17,8 +17,23 @@ class OperationCommand extends Command
      */
     public function handle()
     {
-        $this->replyWithMessage(['text' => trans('telegram.operation')]);
+        $keyboard = [
+            ['/One', '/Two' , '/Three']
+        ];
+        $reply_markup = Keyboard::make([
+            'keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true,
+            'hide_keyboard'=> true
+        ]);
 
-        $this->triggerCommand('example');
+
+        $this->replyWithMessage([
+            'text' => trans('telegram.operation'),
+            'reply_markup' => $reply_markup
+        ]);
+
+
+        //$this->triggerCommand('example');
     }
 }

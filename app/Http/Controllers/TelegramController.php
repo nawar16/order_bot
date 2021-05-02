@@ -61,22 +61,7 @@ class TelegramController extends Controller
             case '/start':
                 $this->start();
                 break;
-            case '/one':
-                $this->one();
-                break;
-            case '/two':
-                $this->two();
-                break;
-            case '/three':
-                $this->three();
-                break;
-            case '/English':
-                $this->english();
-                break;
-            case '/Arabic':
-                $this->arabic();
-                break;   
-            case  '/Operation':
+            case '/operation':
                 $this->operation();
                 break;
             default:
@@ -90,9 +75,7 @@ class TelegramController extends Controller
             $message .= $info . chr(10);
         }
         $message .= '/start' . chr(10);
-        $message .= '/one' . chr(10);
-        $message .= '/two' . chr(10);
-        $message .= '/three' . chr(10);
+        $message .= '/operation' . chr(10);
  
         $this->sendMessage($message);
     }
