@@ -42,16 +42,8 @@ class OperationCommand extends Command
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
  
-        switch ($text) {
-            case '/One':
-                $this->triggerCommand('example', $updates);
-                break;
-            case '/Two':
-                $this->triggerCommand('example', $updates);
-                break;
-            default:
-                $this->triggerCommand('example', $updates);
-        }
+        $this->triggerCommand('example', $updates);
+
     
     }
 }

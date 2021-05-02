@@ -17,8 +17,22 @@ class ExampleCommand extends Command
      */
     public function handle()
     {
+        $updates = $this->telegram->getWebhookUpdates();
 
-        $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
+        $chat_id = $updates['message']['chat']['id'];
+        $username = $updates['message']['from']['username'];
+        $text = $updates['message']['text'];
+        switch ($text) {
+            case '/One':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
+                break;
+            case '/Two':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_two')]);
+                break;
+            default:
+            $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+        }
+        //$this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
 
         //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
 
