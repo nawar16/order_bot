@@ -157,17 +157,17 @@ class TelegramController extends Controller
     }
     public function dep1()
     {
-        $message = trans('telegram.you_chose_dep1');
+        $message = trans('telegram.you_choose_dep1');
         $this->sendMessage($message);
     }
     public function dep2()
     {
-        $message = trans('telegram.you_chose_dep2');
+        $message = trans('telegram.you_choose_dep2');
         $this->sendMessage($message);
     }
     public function dep3()
     {
-        $message = trans('telegram.you_chose_dep3');
+        $message = trans('telegram.you_choose_dep3');
         $this->sendMessage($message);
     }
     ////////////////////////////////////////////////////
