@@ -2,7 +2,7 @@
 
 return [
 
-    'operation' => 'Operation',
+    'operation' => 'Choose your operation',
     'one' => 'One',
     'two' => 'Two',
     'three' => 'Three',

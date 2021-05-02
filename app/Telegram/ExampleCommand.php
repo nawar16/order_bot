@@ -18,14 +18,16 @@ class ExampleCommand extends Command
     public function handle()
     {
 
-        $this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
+        $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
 
-        $this->replyWithChatAction(['action' => Actions::TYPING]);
+        //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
+
+        //$this->replyWithChatAction(['action' => Actions::TYPING]);
 
         // This will prepare a list of available commands and send the user.
         // First, Get an array of all registered commands
         // They'll be in 'command-name' => 'Command Handler Class' format.
-        $commands = $this->getTelegram()->getCommands();
+        /*$commands = $this->getTelegram()->getCommands();
 
         // Build the list
         $response = '';
@@ -34,6 +36,6 @@ class ExampleCommand extends Command
         }
 
         // Reply with the commands list
-        $this->replyWithMessage(['text' => $response]);
+        $this->replyWithMessage(['text' => $response]);*/
     }
 }
