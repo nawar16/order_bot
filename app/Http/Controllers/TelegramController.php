@@ -20,15 +20,6 @@ class TelegramController extends Controller
     public function __construct(){
         Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
-        /*$keyboard = [
-            ['/Arabic', '/English']
-        ];
-        $this->reply_markup = Keyboard::make([
-            'keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true,
-            'hide_keyboard'=> true
-        ]);*/
     }
     public function getMe(){
         $response = $this->telegram->getMe();
@@ -69,6 +60,15 @@ class TelegramController extends Controller
                 break;
             case '/English':
                 $this->english();
+                break;
+            case '/One':
+                $this->one();
+                break;
+            case '/Two':
+                $this->two();
+                break;
+            case '/Three':
+                $this->three();
                 break;
             default:
                 $this->showMenu();
