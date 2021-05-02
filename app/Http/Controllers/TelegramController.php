@@ -164,7 +164,8 @@ class TelegramController extends Controller
                 'locale' => 'en'
             ]);
         }
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
+        //$update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
     public function arabic()
@@ -183,7 +184,8 @@ class TelegramController extends Controller
                 'locale' => 'ar'
             ]);
         }
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
+        //$update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
     public function dep1()
