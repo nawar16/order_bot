@@ -105,7 +105,7 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function start()
     {
-        /*$keyboard = [
+        $keyboard = [
             ['عربي', 'English']
         ];
         $reply_markup = Keyboard::make([
@@ -117,9 +117,9 @@ class TelegramController extends Controller
         $this->telegram->sendMessage([
             'text' => 'Hello! Welcome to our bot, choose your language : ',
             'reply_markup' => $reply_markup
-        ]);*/
-        $update = $this->telegram->getWebhookUpdates();
-        return $this->telegram->triggerCommand('start', $update);
+        ]);
+        //$update = $this->telegram->getWebhookUpdates();
+        //return $this->telegram->triggerCommand('start', $update);
     }
     public function operation()
     {
