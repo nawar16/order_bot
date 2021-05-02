@@ -119,8 +119,7 @@ class TelegramController extends Controller
     }
     public function two()
     {
-        $message = \Session::get('lang');
-        //trans('telegram.you_enter_two');
+        $message = trans('telegram.you_enter_two');
         $this->sendMessage($message);
     }
     public function three()
