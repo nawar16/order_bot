@@ -191,6 +191,21 @@ class TelegramController extends Controller
  
         $this->telegram->sendMessage($data);
     }
+    protected function sendMessage1(Request $request)
+    {
+
+        $message = '/start';
+        $parse_html = false;
+        $data = [
+            'chat_id' => '294649898',
+            'text' => $message,
+            'reply_markup' => $this->reply_markup
+        ];
+ 
+        if ($parse_html) $data['parse_mode'] = 'HTML';
+ 
+        $this->telegram->sendMessage($data);
+    }
     ////////////////////////////////////////////////////
     public function updatedActivity()
     {
@@ -208,6 +223,7 @@ class TelegramController extends Controller
         $updates = $this->telegram->getWebhookUpdates();
         dd($updates);
     }
+    
 
 }
     

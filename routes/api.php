@@ -32,3 +32,4 @@ Route::post('/'.env('TELEGRAM_BOT_TOKEN').'/webhook', 'TelegramController@handle
 Route::get('/updated-activity', 'TelegramController@updatedActivity');
 Route::post('/getUpdates', 'TelegramController@getUpdates');
 Route::get('/test', 'TelegramController@test');
+Route::post('/sendMessage', 'TelegramController@sendMessage1');
