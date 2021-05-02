@@ -234,7 +234,7 @@ class TelegramController extends Controller
         ];
  
         if ($parse_html) $data['parse_mode'] = 'HTML';
-        $result = request()->initialize($this->telegram)->sendMessage($data);
+        $result = ($this->telegram)->sendMessage($data);
         return $result;
     }
     
