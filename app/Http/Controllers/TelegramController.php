@@ -54,6 +54,7 @@ class TelegramController extends Controller
         if($updates->isType('callback_query'))
         {
             $callback_query_data = $updates['callback_query']['data'];
+            dd($callback_query_data);
             switch($callback_query_data)
             {
                 case 'Arabic':
