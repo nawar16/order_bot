@@ -13,7 +13,7 @@ class StartCommand extends Command
 
     protected $name = "start";
 
-    protected $description = "Chose the language";
+    protected $description = "Choose the language";
 
     /**
      * @inheritdoc
@@ -24,7 +24,7 @@ class StartCommand extends Command
         $keyboard = [
             ['/Arabic', '/English']
         ];
-        $this->reply_markup = Keyboard::make([
+        $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
             'resize_keyboard' => true, 
             'one_time_keyboard' => true,
@@ -34,33 +34,33 @@ class StartCommand extends Command
         $updates = $this->telegram->getWebhookUpdates();
 
         $chat_id = $updates["message"]["chat"]["id"];
-        $this->text = $updates['message']['text'];
+        $text = $updates['message']['text'];
 
         $this->replyWithMessage([
             'chat_id' => $chat_id,
             'text' => 'Hello! Welcome to our bot, chose your language : ',
-            'reply_markup' => $keyboard
+            'reply_markup' => $reply_markup
         ]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
         $updates = $this->telegram->getWebhookUpdates();
 
         $chat_id = $updates["message"]["chat"]["id"];
-        $this->text = $updates['message']['text'];
+        $text = $updates['message']['text'];
 
                 
-                switch ($this->text) {
-                    case '/English':
-                        $this->english();
-                        break;
-                    case '/Arabic':
-                        $this->arabic();
-                        break;   
-                    default:
-                        $this->english();
-                }
+        switch ($text) {
+            case '/English':
+                $this->english();
+                break;
+            case '/Arabic':
+                $this->arabic();
+                break;   
+            default:
+                $this->english();
+        }
 
-        $this->triggerCommand('operation');
+        //$this->triggerCommand('operation');
     }
     public function english()
     {
