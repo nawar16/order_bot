@@ -36,11 +36,6 @@ class OperationCommand extends Command
         ]);
 
 
-        $updates = $this->telegram->getWebhookUpdates();
-
-        $chat_id = $updates['message']['chat']['id'];
-        $username = $updates['message']['from']['username'];
-        $text = $updates['message']['text'];
  
         //$this->triggerCommand('example', $updates);
 
