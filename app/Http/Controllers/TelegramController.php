@@ -51,42 +51,59 @@ class TelegramController extends Controller
         //dd($updates);
 
         //calling the appropriate method based on the user command
-        switch ($this->text) {
-            case '/start':
-                $this->start();
-                break;
-            case '/operation':
-                $this->operation();
-                break;
-            case '/departments':
-                $this->departments();
-                break;
-            case '/Arabic':
-                $this->arabic();
-                break;
-            case '/English':
-                $this->english();
-                break;
-            case '/One':
-                $this->one();
-                break;
-            case '/Two':
-                $this->two();
-                break;
-            case '/Three':
-                $this->three();
-                break;
-            case '/Dep1':
-                $this->dep1();
-                break;
-            case '/Dep2':
-                $this->dep2();
-                break;
-            case '/Dep3':
-                $this->dep3();
-                break;
-            default:
-                $this->showMenu();
+        if($updates['callback_query'] != Null)
+        {
+            $callback_query_data = $updates['callback_query']['data'];
+            switch($callback_query_data)
+            {
+                case 'Arabic':
+                    $this->arabic();
+                    break;
+                case 'English':
+                    $this->english();
+                    break;
+                default :
+                    $this->english();
+            }
+        }
+        else{
+            switch ($this->text) {
+                case '/start':
+                    $this->start();
+                    break;
+                case '/operation':
+                    $this->operation();
+                    break;
+                case '/departments':
+                    $this->departments();
+                    break;
+                case '/Arabic':
+                    $this->arabic();
+                    break;
+                case '/English':
+                    $this->english();
+                    break;
+                case '/One':
+                    $this->one();
+                    break;
+                case '/Two':
+                    $this->two();
+                    break;
+                case '/Three':
+                    $this->three();
+                    break;
+                case '/Dep1':
+                    $this->dep1();
+                    break;
+                case '/Dep2':
+                    $this->dep2();
+                    break;
+                case '/Dep3':
+                    $this->dep3();
+                    break;
+                default:
+                    $this->showMenu();
+            }
         }
     }
     public function showMenu($info = null)

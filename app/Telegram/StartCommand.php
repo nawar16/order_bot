@@ -20,7 +20,6 @@ class StartCommand extends Command
      */
     public function handle()
     {
-
         /*$keyboard = [
             ['/Arabic', '/English']
         ];*/
@@ -34,8 +33,8 @@ class StartCommand extends Command
         ]);*/
         $keyboard = [
             array(
-                array('text'=>'عربي','callback_data'=>'/Arabic'),
-                array('text'=>'English','callback_data'=>'/English')
+                array('text'=>'عربي','callback_data'=>'Arabic'),
+                array('text'=>'English','callback_data'=>'English')
             )
         ];
         $reply_markup = Keyboard::make([
