@@ -23,8 +23,22 @@ class OneCommand extends Command
         $username = $updates['message']['from']['username'];
         $text = $updates['message']['text'];
 
+        switch ($text) {
+            case '/One':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_one')]);
+                break;
+            case '/Two':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_two')]);
+                break;
+            case '/Three':
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+                break;
+            default:
+                $this->replyWithMessage(['text' => trans('telegram.you_enter_three')]);
+        }
+
         
-        $this->replyWithMessage(['text' => $text]);
+        
 
         //$this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
 
