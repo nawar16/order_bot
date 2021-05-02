@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Lang {
+class Locale{
 	/**
 	 * Handle an incoming request.
 	 *
@@ -12,8 +12,10 @@ class Lang {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next) {
-		app()->setLocale(lang());
-		return $next($request);
-	}
+    public function handle($request, Closure $next, string $lang)
+    {
+        app()->setLocale($lang);
+
+        return $next($request);
+    }
 }

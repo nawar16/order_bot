@@ -125,7 +125,9 @@ class TelegramController extends Controller
     }
     public function three()
     {
-        \App::setLocale('ar');
+        app()->setLocale('ar');
+        $lang = 'ar';
+        $this->middleware("Locale:$lang");
         \Session::put('lang', 'ar');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('example', $update);
@@ -133,6 +135,8 @@ class TelegramController extends Controller
     public function english()
     {
         \App::setLocale('en');
+        $lang = 'en';
+        $this->middleware("Locale:$lang");
         \Session::put('lang', 'en');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
@@ -140,6 +144,8 @@ class TelegramController extends Controller
     public function arabic()
     {
         \App::setLocale('ar');
+        $lang = 'ar';
+        $this->middleware("Locale:$lang");
         \Session::put('lang', 'ar');
         $update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('operation', $update);
