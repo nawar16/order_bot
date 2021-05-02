@@ -51,7 +51,7 @@ class TelegramController extends Controller
         //dd($updates);
 
         //calling the appropriate method based on the user command
-        if($updates['callback_query'] != Null)
+        if($updates->isType('callback_query'))
         {
             $callback_query_data = $updates['callback_query']['data'];
             switch($callback_query_data)
