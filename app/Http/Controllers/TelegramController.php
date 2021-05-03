@@ -66,6 +66,10 @@ class TelegramController extends Controller
         $this->username = $request['message']['from']['username'];
         $this->text = $request['message']['text'];
  
+        $user_phone = $result["message"]["contact"]["phone_number"];
+        if ($user_phone) {
+            return $this->verify($user_phone);
+        }
         $lang = Setting::where('chat_id', $this->chat_id)->first();
         if(!is_null($lang))
         {
@@ -116,9 +120,6 @@ class TelegramController extends Controller
                     break;
                 case '/order_by_user_num':
                     $this->order_by_user_num();
-                    break;
-                case '/Verify':
-                    $this->verify();
                     break;
                 default:
                     $this->showMenu();
@@ -329,12 +330,12 @@ class TelegramController extends Controller
         ]);
 
     }
-    public function verify()
+    public function verify($user_phone)
     {
-        $updates = Telegram::commandsHandler(true);
-        $chat_id = $updates->getChat()->getId();
-        $user_phone = array_key_exists('contact', $updates['message']) ? 
-            $updates['message']['contact']['phone_number'] : null;
+        //$updates = Telegram::commandsHandler(true);
+        //$chat_id = $updates->getChat()->getId();
+        /*$user_phone = array_key_exists('contact', $updates['message']) ? 
+            $updates['message']['contact']['phone_number'] : null;*/
         $text = 'Phone number : ' . $user_phone . ' request an order.';
         if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
 
