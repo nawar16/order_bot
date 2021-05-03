@@ -17,7 +17,7 @@ class TelegramController extends Controller
     protected $reply_markup;
     protected $chat_id;
     public function __construct(){
-        //Telegram::setTimeout(3000);
+        Telegram::setTimeout(3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         \Session::put('lang', 'en');
         $this->middleware("Locale");
@@ -53,19 +53,23 @@ class TelegramController extends Controller
         }
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
-        if($request->isType('callback_query')) {
-            $query = $request->getCallbackQuery();
+        if($updates->isType('callback_query')) {
+            $query = $updates->getCallbackQuery();
             $data  = $query->getData();
             $chid = $query->getFrom()->getId();
 
-        // again, you can't get the message object if the object is a callback_query.
-        // in this case the $json variable would be undefined.
-        // $json = json_decode($query->getMessage(), true);
-        $this->telegram->sendMessage([
-            'chat_id' => $chid,
-            'text' => 'Here is the callback: ' . $data,
-            'reply_markup' => $keyboard
-        ]);
+            $keyboard = Keyboard::make()
+            ->inline()
+            ->row(
+                Keyboard::inlineButton(['text' => 'One ', 'callback_data' => '/One']),
+                Keyboard::inlineButton(['text' => 'Two', 'callback_data' => '/Two'])
+            );
+            $this->telegram->sendMessage([
+                'chat_id' => $chid,
+                'text' => 'Here is the callback: ' . $data,
+                'reply_markup' => $keyboard
+            ]);
+            return 'Ok';
         }
         //calling the appropriate method based on the user command
 
