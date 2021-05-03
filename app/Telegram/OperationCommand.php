@@ -19,7 +19,7 @@ class OperationCommand extends Command
      */
     public function handle()
     {
-        $chat_id = $this->getTelegram()->getWebhookUpdates()->getMessage()->getChat()->getId();
+        $chat_id = $this->chat->get('id');
         $lang = Setting::where('chat_id', $chat_id)->first();
         if(!is_null($lang))
         {
