@@ -30,15 +30,10 @@ class OneCommand extends Command
             Keyboard::inlineButton(['text' => 'Two', 'callback_data' => '/Two'])
         );
 
-        $reply_markup = Keyboard::make([
-            'inline_keyboard' => $keyboard, 
-            'resize_keyboard' => true, 
-            'one_time_keyboard' => true,
-            'hide_keyboard'=> true
-        ]);
+
         $this->replyWithMessage([
             'text' => 'Test for inline keyboard',
-            'reply_markup' => $reply_markup
+            'reply_markup' => $keyboard
         ]);
 
 
