@@ -53,8 +53,8 @@ class TelegramController extends Controller
         }
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
-        if($updates->isType('callback_query')) {
-            $query = $updates->getCallbackQuery();
+        if($request->isType('callback_query')) {
+            $query = $request->getCallbackQuery();
             $data  = $query->getData();
             $chid = $query->getFrom()->getId();
 
