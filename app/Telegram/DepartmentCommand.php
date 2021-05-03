@@ -20,7 +20,8 @@ class DepartmentCommand extends Command
      */
     public function handle()
     {
-        $chat_id = $this->getTelegram()->getWebhookUpdates()->getMessage()->getChat()->getId();
+        $update = Telegram::commandsHandler(true);
+        $chat_id = $update['message']['chat']['id'];
         $lang = Setting::where('chat_id', $chat_id)->first();
         if(!is_null($lang))
         {
