@@ -17,7 +17,7 @@ class DepartmentCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle($arguments)
+    public function handle()
     {
         $keyboard = [
             ['Dep1', 'Dep2' , 'Dep3']

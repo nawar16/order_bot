@@ -17,7 +17,7 @@ class OperationCommand extends Command
     /**
      * @inheritdoc
      */
-    public function handle($arguments)
+    public function handle()
     {
         $keyboard = [
             ['One', 'Two' , 'Three']
