@@ -40,17 +40,6 @@ class TelegramController extends Controller
      * request sent by telegram webhook
      */
     public function handleRequest(Request $request){
-
-        $this->chat_id = $request['message']['chat']['id'];
-        $this->username = $request['message']['from']['username'];
-        $this->text = $request['message']['text'];
- 
-        $lang = Setting::where('chat_id', $this->chat_id)->first();
-        if(!is_null($lang))
-        {
-            \App::setLocale($lang->locale);
-            \Session::put('lang', $lang->locale);
-        }
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
         if($updates->isType('callback_query')) {
@@ -71,6 +60,18 @@ class TelegramController extends Controller
             ]);
             return 'Ok';
         }
+
+        $this->chat_id = $request['message']['chat']['id'];
+        $this->username = $request['message']['from']['username'];
+        $this->text = $request['message']['text'];
+ 
+        $lang = Setting::where('chat_id', $this->chat_id)->first();
+        if(!is_null($lang))
+        {
+            \App::setLocale($lang->locale);
+            \Session::put('lang', $lang->locale);
+        }
+
         //calling the appropriate method based on the user command
 
         switch ($this->text) {
