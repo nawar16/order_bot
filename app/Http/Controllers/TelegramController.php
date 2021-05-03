@@ -45,6 +45,12 @@ class TelegramController extends Controller
         $this->username = $request['message']['from']['username'];
         $this->text = $request['message']['text'];
  
+        $lang = Setting::where('chat_id', $this->chat_id)->first();
+        if(!is_null($lang))
+        {
+            \App::setLocale($lang->locale);
+            \Session::put('lang', $lang->locale);
+        }
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
 
