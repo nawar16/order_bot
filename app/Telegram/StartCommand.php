@@ -21,7 +21,7 @@ class StartCommand extends Command
     public function handle()
     {
         $keyboard = [
-            ['عربي', 'English']
+            ['/عربي', '/English']
         ];
         /*$inline_keyboard = [
             [

@@ -20,7 +20,7 @@ class DepartmentCommand extends Command
     public function handle()
     {
         $keyboard = [
-            ['Dep1', 'Dep2' , 'Dep3']
+            ['/Dep1', '/Dep2' , '/Dep3']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 

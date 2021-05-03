@@ -60,28 +60,28 @@ class TelegramController extends Controller
                 case '/departments':
                     $this->departments();
                     break;
-                case 'عربي':
+                case '/عربي':
                     $this->arabic();
                     break;
-                case 'English':
+                case '/English':
                     $this->english();
                     break;
-                case 'One':
+                case '/One':
                     $this->one();
                     break;
-                case 'Two':
+                case '/Two':
                     $this->two();
                     break;
-                case 'Three':
+                case '/Three':
                     $this->three();
                     break;
-                case 'Dep1':
+                case '/Dep1':
                     $this->dep1();
                     break;
-                case 'Dep2':
+                case '/Dep2':
                     $this->dep2();
                     break;
-                case 'Dep3':
+                case '/Dep3':
                     $this->dep3();
                     break;
                 default:
@@ -105,7 +105,7 @@ class TelegramController extends Controller
     //////////////////////////Handling Input////////////////////////// 
     public function start()
     {
-        $keyboard = [
+        /*$keyboard = [
             ['عربي', 'English']
         ];
         $reply_markup = Keyboard::make([
@@ -118,9 +118,9 @@ class TelegramController extends Controller
             'chat_id' => $this->chat_id,
             'text' => 'Hello! Welcome to our bot, choose your language : ',
             'reply_markup' => $reply_markup
-        ]);
-        //$update = $this->telegram->getWebhookUpdates();
-        //return $this->telegram->triggerCommand('start', $update);
+        ]);*/
+        $update = $this->telegram->getWebhookUpdates();
+        return $this->telegram->triggerCommand('start', $update);
     }
     public function operation()
     {
