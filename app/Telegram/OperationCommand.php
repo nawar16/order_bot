@@ -6,6 +6,7 @@ use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 use \Telegram as Telegram;
+use App\Models\Setting;
 
 class OperationCommand extends Command
 {
