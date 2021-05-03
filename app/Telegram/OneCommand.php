@@ -18,9 +18,9 @@ class OneCommand extends Command
      */
     public function handle()
     {
-        $telegram = $this->telegram;
+        /*$telegram = $this->telegram;
         // First, we get the update.
-        $result = $telegram->getWebhookUpdate();
+        $result = $telegram->getWebhookUpdate();*/
 
         // No problems here...
         $keyboard = Keyboard::make()
@@ -30,8 +30,19 @@ class OneCommand extends Command
             Keyboard::inlineButton(['text' => 'Two', 'callback_data' => '/Two'])
         );
 
+        $reply_markup = Keyboard::make([
+            'inline_keyboard' => $keyboard, 
+            'resize_keyboard' => true, 
+            'one_time_keyboard' => true,
+            'hide_keyboard'=> true
+        ]);
+        $this->replyWithMessage([
+            'text' => 'Test for inline keyboard',
+            'reply_markup' => $reply_markup
+        ]);
 
-        if ($result->isType('callback_query')) {
+
+        /*if ($result->isType('callback_query')) {
             $query = $result->getCallbackQuery();
             $data  = $query->getData();
             $chid = $query->getFrom()->getId();
@@ -54,6 +65,6 @@ class OneCommand extends Command
                 'text' => 'Hello',
                 'reply_markup' => $keyboard
             ]);
-        }
+        }*/
     }
 }

@@ -53,7 +53,20 @@ class TelegramController extends Controller
         }
         $updates = $this->telegram->getWebhookUpdates();
         //dd($updates);
+        if($updates->isType('callback_query')) {
+            $query = $updates->getCallbackQuery();
+            $data  = $query->getData();
+            $chid = $query->getFrom()->getId();
 
+        // again, you can't get the message object if the object is a callback_query.
+        // in this case the $json variable would be undefined.
+        // $json = json_decode($query->getMessage(), true);
+        $this->telegram->sendMessage([
+            'chat_id' => $chid,
+            'text' => 'Here is the callback: ' . $data,
+            'reply_markup' => $keyboard
+        ]);
+        }
         //calling the appropriate method based on the user command
 
         switch ($this->text) {
@@ -89,6 +102,9 @@ class TelegramController extends Controller
                     break;
                 case '/Dep3':
                     $this->dep3();
+                    break;
+                case '/inline':
+                    $this->inline();
                     break;
                 default:
                     $this->showMenu();
@@ -138,6 +154,11 @@ class TelegramController extends Controller
     {
         $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('departments', $update);
+    }
+    public function inline()
+    {
+        $update = Telegram::commandsHandler(true);
+        return $this->telegram->triggerCommand('one', $update);
     }
 
     public function one()
