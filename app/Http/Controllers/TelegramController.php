@@ -134,6 +134,8 @@ class TelegramController extends Controller
         $message .= '/start' . chr(10);
         $message .= '/departments' . chr(10);
         $message .= '/operation' . chr(10);
+        $message .= '/order' . chr(10);
+        $message .= '/order_by_user_num' . chr(10);
  
         $this->sendMessage($message);
     }
@@ -338,10 +340,6 @@ class TelegramController extends Controller
     }
     public function verify($user_phone)
     {
-        //$updates = Telegram::commandsHandler(true);
-        //$chat_id = $updates->getChat()->getId();
-        /*$user_phone = array_key_exists('contact', $updates['message']) ? 
-            $updates['message']['contact']['phone_number'] : null;*/
         $text = 'Phone number : ' . $user_phone . ' request an order.';
         if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
 
