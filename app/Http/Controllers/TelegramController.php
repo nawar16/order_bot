@@ -117,6 +117,9 @@ class TelegramController extends Controller
                 case '/order_by_user_num':
                     $this->order_by_user_num();
                     break;
+                case '/Verify':
+                    $this->verify();
+                    break;
                 default:
                     $this->showMenu();
         }
@@ -309,7 +312,7 @@ class TelegramController extends Controller
     public function order_by_user_num()
     {
         $btn = Keyboard::button([
-            'text' => 'Verify',
+            'text' => '/Verify',
             'request_contact' => true,
         ]);
     
@@ -319,22 +322,14 @@ class TelegramController extends Controller
             'one_time_keyboard' => true
         ]);
     
-        $this->telegram->sendMessage([
+        return $this->telegram->sendMessage([
             'chat_id' => $this->chat_id, 
             'text' => 'Please click on Verify and Share.',
             'reply_markup' => $keyboard
         ]);
 
-        $updates = Telegram::commandsHandler(true);
-        $chat_id = $updates->getChat()->getId();
-        $user_phone = array_key_exists('contact', $updates['message']) ? 
-            $updates['message']['contact']['phone_number'] : null;
-        $text = 'Phone number : ' . $user_phone . ' request an order.';
-        if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
-
-        return 'ok';
     }
-    public function order_by_user_number1()
+    public function verify()
     {
         $updates = Telegram::commandsHandler(true);
         $chat_id = $updates->getChat()->getId();
