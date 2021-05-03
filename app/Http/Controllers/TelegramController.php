@@ -306,7 +306,7 @@ class TelegramController extends Controller
  
         $this->telegram->sendMessage($data);
     }
-    public function order_by_user_number()
+    public function order_by_user_num()
     {
         $btn = Keyboard::button([
             'text' => 'Verify',
