@@ -18,11 +18,10 @@ class OneCommand extends Command
      */
     public function handle()
     {
-        /*$telegram = $this->telegram;
+        $telegram = $this->telegram;
         // First, we get the update.
-        $result = $telegram->getWebhookUpdate();*/
+        $result = $telegram->getWebhookUpdate();
 
-        // No problems here...
         $keyboard = Keyboard::make()
         ->inline()
         ->row(
@@ -37,22 +36,23 @@ class OneCommand extends Command
         ]);
 
 
-        /*if ($result->isType('callback_query')) {
+        if ($result->isType('callback_query')) {
+
             $query = $result->getCallbackQuery();
             $data  = $query->getData();
             $chid = $query->getFrom()->getId();
 
-        // again, you can't get the message object if the object is a callback_query.
-        // in this case the $json variable would be undefined.
-        // $json = json_decode($query->getMessage(), true);
-        $telegram->sendMessage([
-            'chat_id' => $chid,
-            'text' => 'Here is the callback: ' . $data,
-            'reply_markup' => $keyboard
-        ]);
+            // again, you can't get the message object if the object is a callback_query.
+            // in this case the $json variable would be undefined.
+            // $json = json_decode($query->getMessage(), true);
+            $telegram->sendMessage([
+                'chat_id' => $chid,
+                'text' => 'Here is the callback: ' . $data,
+                'reply_markup' => $keyboard
+            ]);
 
         // Just to make sure that there's a ['message']:
-        } elseif(isset($result["message"])) {
+        } /*elseif(isset($result["message"])) {
             $chat_id = $result["message"]["chat"]["id"];
 
             $response = $telegram->sendMessage([
