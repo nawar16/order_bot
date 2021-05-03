@@ -305,7 +305,7 @@ class TelegramController extends Controller
     public function order()
     {
         $message = "client ".$this->username." ask for order";
-        $this->sendMessage($message);
+        $this->sendMessageForVendor($message);
     }
 }
     
