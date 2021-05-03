@@ -120,22 +120,23 @@ class TelegramController extends Controller
             'reply_markup' => $reply_markup
         ]);
         //$update = $this->telegram->getWebhookUpdates();
+        //$update = Telegram::commandsHandler(true);
         //return $this->telegram->triggerCommand('start', $update);
     }
     public function operation()
     {
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function departments()
     {
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('departments', $update);
     }
 
     public function one()
     {
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('example', $update);
     }
     public function two()
@@ -145,7 +146,7 @@ class TelegramController extends Controller
     }
     public function three()
     {
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('example', $update);
     }
     public function english()
@@ -165,7 +166,6 @@ class TelegramController extends Controller
             ]);
         }
         $update = Telegram::commandsHandler(true);
-        //$update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
     public function arabic()
@@ -185,28 +185,27 @@ class TelegramController extends Controller
             ]);
         }
         $update = Telegram::commandsHandler(true);
-        //$update = $this->telegram->getWebhookUpdates();
         return $this->telegram->triggerCommand('departments', $update);
     }
     public function dep1()
     {
         $message = trans('telegram.you_choose_dep1');
         $this->sendMessage($message);
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function dep2()
     {
         $message = trans('telegram.you_choose_dep2');
         $this->sendMessage($message);
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('operation', $update);
     }
     public function dep3()
     {
         $message = trans('telegram.you_choose_dep3');
         $this->sendMessage($message);
-        $update = $this->telegram->getWebhookUpdates();
+        $update = Telegram::commandsHandler(true);
         return $this->telegram->triggerCommand('operation', $update);
     }
     ////////////////////////////////////////////////////
