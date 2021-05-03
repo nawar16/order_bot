@@ -136,8 +136,10 @@ class TelegramController extends Controller
 
     public function one()
     {
-        $update = Telegram::commandsHandler(true);
-        return $this->telegram->triggerCommand('example', $update);
+        $message = trans('telegram.you_enter_one');
+        $this->sendMessage($message);
+        //$update = Telegram::commandsHandler(true);
+        //return $this->telegram->triggerCommand('example', $update);
     }
     public function two()
     {
@@ -146,8 +148,8 @@ class TelegramController extends Controller
     }
     public function three()
     {
-        $update = Telegram::commandsHandler(true);
-        return $this->telegram->triggerCommand('example', $update);
+        $message = trans('telegram.you_enter_three');
+        $this->sendMessage($message);
     }
     public function english()
     {
