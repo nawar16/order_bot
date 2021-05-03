@@ -65,11 +65,11 @@ class TelegramController extends Controller
         $this->chat_id = $request['message']['chat']['id'];
         $this->username = $request['message']['from']['username'];
         $this->text = $request['message']['text'];
+
  
-        $user_phone = $request["message"]["contact"]["phone_number"];
-        if ($user_phone) {
-            return $this->verify($user_phone);
-        }
+        $user_phone = array_key_exists('contact', $request['message']) ? 
+        $request['message']['contact']['phone_number'] : null;
+        if($user_phone) return $this->verify($user_phone);
         $lang = Setting::where('chat_id', $this->chat_id)->first();
         if(!is_null($lang))
         {
