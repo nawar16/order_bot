@@ -310,6 +310,12 @@ class TelegramController extends Controller
  
         $this->telegram->sendMessage($data);
     }
+    public function order()
+    {
+        $message = "client ".$this->username." ask for order";
+        $this->sendMessageForVendor($message);
+    }
+    ////////////////////////////////////////////////////////////////////////
     public function order_by_user_num()
     {
         $btn = Keyboard::button([
@@ -340,11 +346,6 @@ class TelegramController extends Controller
         if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
 
         return 'ok';
-    }
-    public function order()
-    {
-        $message = "client ".$this->username." ask for order";
-        $this->sendMessageForVendor($message);
     }
 }
     
