@@ -60,7 +60,7 @@ class TelegramController extends Controller
                 case '/departments':
                     $this->departments();
                     break;
-                case '/عربي':
+                case '/Arabic':
                     $this->arabic();
                     break;
                 case '/English':
@@ -106,7 +106,7 @@ class TelegramController extends Controller
     public function start()
     {
         $keyboard = [
-            ['/عربي', '/English']
+            ['/Arabic', '/English']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 

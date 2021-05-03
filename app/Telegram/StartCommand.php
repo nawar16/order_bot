@@ -21,17 +21,17 @@ class StartCommand extends Command
     public function handle()
     {
         $keyboard = [
-            ['/عربي', '/English']
+            ['/Arabic', '/English']
         ];
         /*$inline_keyboard = [
             [
-                [ "text" => "عربي", "callback_data" => "Arabic" ],
+                [ "text" => "Arabic", "callback_data" => "Arabic" ],
                 [ "text" => "English", "callback_data" => "English" ],
             ]
         ];
         $keyboard = [
             array(
-                array('text'=>'عربي','callback_data'=>'Arabic'),
+                array('text'=>'Arabic','callback_data'=>'Arabic'),
                 array('text'=>'English','callback_data'=>'English')
             )
         ];*/
