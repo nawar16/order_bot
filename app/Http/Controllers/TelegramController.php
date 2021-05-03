@@ -114,6 +114,9 @@ class TelegramController extends Controller
                 case '/order':
                     $this->order();
                     break;
+                case '/order_by_user_num':
+                    $this->order_by_num();
+                    break;
                 default:
                     $this->showMenu();
         }
@@ -290,6 +293,7 @@ class TelegramController extends Controller
  
         $this->telegram->sendMessage($data);
     }
+    ////////////////////////////////////////////////////////////////////////
     protected function sendMessageForVendor($message, $parse_html = false)
     {
         $data = [
@@ -301,6 +305,45 @@ class TelegramController extends Controller
         if ($parse_html) $data['parse_mode'] = 'HTML';
  
         $this->telegram->sendMessage($data);
+    }
+    public function order_by_user_number()
+    {
+        $btn = Keyboard::button([
+            'text' => 'Verify',
+            'request_contact' => true,
+        ]);
+    
+        $keyboard = Keyboard::make([
+            'keyboard' => [[$btn]],
+            'resize_keyboard' => true,
+            'one_time_keyboard' => true
+        ]);
+    
+        $this->telegram->sendMessage([
+            'chat_id' => $this->chat_id, 
+            'text' => 'Please click on Verify and Share.',
+            'reply_markup' => $keyboard
+        ]);
+
+        $updates = Telegram::commandsHandler(true);
+        $chat_id = $updates->getChat()->getId();
+        $user_phone = array_key_exists('contact', $updates['message']) ? 
+            $updates['message']['contact']['phone_number'] : null;
+        $text = 'Phone number : ' . $user_phone . ' request an order.';
+        if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
+
+        return 'ok';
+    }
+    public function order_by_user_number1()
+    {
+        $updates = Telegram::commandsHandler(true);
+        $chat_id = $updates->getChat()->getId();
+        $user_phone = array_key_exists('contact', $updates['message']) ? 
+            $updates['message']['contact']['phone_number'] : null;
+        $text = 'Phone number : ' . $user_phone . ' request an order.';
+        if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
+
+        return 'ok';
     }
     public function order()
     {
