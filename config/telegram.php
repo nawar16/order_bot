@@ -116,12 +116,12 @@ return [
     |
     */
     'commands'                     => [
-        Telegram\Bot\Commands\HelpCommand::class,
-        App\Telegram\ExampleCommand::class,
+        //Telegram\Bot\Commands\HelpCommand::class,
+        //App\Telegram\ExampleCommand::class,
         App\Telegram\StartCommand::class,
-        App\Telegram\OperationCommand::class,
-        App\Telegram\OneCommand::class,
         App\Telegram\DepartmentCommand::class,
+        App\Telegram\OperationCommand::class,
+        //App\Telegram\OneCommand::class,
     ],
 
     /*
