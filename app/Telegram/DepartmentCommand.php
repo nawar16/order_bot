@@ -6,6 +6,7 @@ use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram\Bot\Keyboard\Keyboard as Keyboard;
 use \Telegram as Telegram;
+use App\Models\Setting;
 
 class DepartmentCommand extends Command
 {
@@ -19,6 +20,20 @@ class DepartmentCommand extends Command
      */
     public function handle()
     {
+        $updates =  Telegram::getWebhookUpdates();
+        
+
+        $chat_id = $updates['message']['chat']['id'];
+        $username = $updates['message']['from']['username'];
+        $text = $updates['message']['text'];
+        $lang = Setting::where('chat_id', $chat_id)->first();
+        if(!is_null($lang))
+        {
+            \App::setLocale($lang->locale);
+            \Session::put('lang', $lang->locale);
+        }
+
+
         $keyboard = [
             ['/Dep1', '/Dep2' , '/Dep3']
         ];

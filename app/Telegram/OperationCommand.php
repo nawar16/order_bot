@@ -19,6 +19,19 @@ class OperationCommand extends Command
      */
     public function handle()
     {
+        $updates =  Telegram::getWebhookUpdates();
+        
+
+        $chat_id = $updates['message']['chat']['id'];
+        $username = $updates['message']['from']['username'];
+        $text = $updates['message']['text'];
+        $lang = Setting::where('chat_id', $chat_id)->first();
+        if(!is_null($lang))
+        {
+            \App::setLocale($lang->locale);
+            \Session::put('lang', $lang->locale);
+        }
+        
         $keyboard = [
             ['/One', '/Two' , '/Three']
         ];
