@@ -16,6 +16,7 @@ class TelegramController extends Controller
 
     protected $reply_markup;
     protected $chat_id;
+    protected $username;
     public function __construct(){
         Telegram::setTimeout(20*3000);
         $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
@@ -41,7 +42,7 @@ class TelegramController extends Controller
      */
     public function handleRequest(Request $request){
         $updates = $this->telegram->getWebhookUpdates();
-        //dd($updates);
+        //inline mode deal with callback
         if($updates->isType('callback_query')) {
             $query = $updates->getCallbackQuery();
             $data  = $query->getData();
@@ -72,7 +73,6 @@ class TelegramController extends Controller
             \Session::put('lang', $lang->locale);
         }
 
-        //calling the appropriate method based on the user command
 
         switch ($this->text) {
                 case '/start':
@@ -110,6 +110,9 @@ class TelegramController extends Controller
                     break;
                 case '/inline':
                     $this->inline();
+                    break;
+                case '/order':
+                    $this->order();
                     break;
                 default:
                     $this->showMenu();
@@ -243,20 +246,6 @@ class TelegramController extends Controller
         return $this->telegram->triggerCommand('operation', $update);
     }
     ////////////////////////////////////////////////////
- 
-    protected function sendMessage($message, $parse_html = false)
-    {
-        $data = [
-            'chat_id' => $this->chat_id,
-            'text' => $message,
-            'reply_markup' => $this->reply_markup
-        ];
- 
-        if ($parse_html) $data['parse_mode'] = 'HTML';
- 
-        $this->telegram->sendMessage($data);
-    }
-    ////////////////////////////////////////////////////
     public function updatedActivity()
     {
         $activity = Telegram::getUpdates();
@@ -287,6 +276,36 @@ class TelegramController extends Controller
         if ($parse_html) $data['parse_mode'] = 'HTML';
         $result = ($this->telegram)->sendMessage($data);
         return $result;
+    }
+    ////////////////////////////////////////////////////////////////////////
+    protected function sendMessage($message, $parse_html = false)
+    {
+        $data = [
+            'chat_id' => $this->chat_id,
+            'text' => $message,
+            'reply_markup' => $this->reply_markup
+        ];
+ 
+        if ($parse_html) $data['parse_mode'] = 'HTML';
+ 
+        $this->telegram->sendMessage($data);
+    }
+    protected function sendMessageForVendor($message, $parse_html = false)
+    {
+        $data = [
+            'chat_id' => "860132140",
+            'text' => $message,
+            'reply_markup' => $this->reply_markup
+        ];
+ 
+        if ($parse_html) $data['parse_mode'] = 'HTML';
+ 
+        $this->telegram->sendMessage($data);
+    }
+    public function order()
+    {
+        $message = "client ".$this->username." ask for order";
+        $this->sendMessage($message);
     }
 }
     

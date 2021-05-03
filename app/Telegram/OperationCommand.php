@@ -29,7 +29,7 @@ class OperationCommand extends Command
         }
         
         $keyboard = [
-            ['/One', '/Two' , '/Three']
+            ['/One', '/Two' , '/Three', '/order']
         ];
         $reply_markup = Keyboard::make([
             'keyboard' => $keyboard, 
