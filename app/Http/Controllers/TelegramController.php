@@ -45,7 +45,7 @@ class TelegramController extends Controller
         if($updates->isType('callback_query')) {
             $query = $updates->getCallbackQuery();
             $data  = $query->getData();
-            $chid = $query->getFrom()->getId();
+            $chid = $request['callback_query']['message']['chat']['id'];
 
             $keyboard = Keyboard::make()
             ->inline()
