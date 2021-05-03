@@ -36,7 +36,7 @@ class OneCommand extends Command
         ]);
 
 
-        if ($result->isType('callback_query')) {
+        /*if ($result->isType('callback_query')) {
 
             $query = $result->getCallbackQuery();
             $data  = $query->getData();
