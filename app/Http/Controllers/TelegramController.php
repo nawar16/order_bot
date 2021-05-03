@@ -66,7 +66,7 @@ class TelegramController extends Controller
         $this->username = $request['message']['from']['username'];
         $this->text = $request['message']['text'];
  
-        $user_phone = $result["message"]["contact"]["phone_number"];
+        $user_phone = $request["message"]["contact"]["phone_number"];
         if ($user_phone) {
             return $this->verify($user_phone);
         }
