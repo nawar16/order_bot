@@ -115,7 +115,7 @@ class TelegramController extends Controller
                     $this->order();
                     break;
                 case '/order_by_user_num':
-                    $this->order_by_num();
+                    $this->order_by_user_num();
                     break;
                 default:
                     $this->showMenu();
