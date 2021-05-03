@@ -16,7 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('locale');
-            $table->string('chat_id');
+            $table->string('chat_id')->nullable();
             $table->timestamps();
         });
     }
