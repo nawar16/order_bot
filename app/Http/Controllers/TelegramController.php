@@ -67,6 +67,11 @@ class TelegramController extends Controller
         $this->text = $request['message']['text'];
 
  
+        /*
+        "contact" : {
+			"phone_number" : "+963992181625"
+		}
+        */
         $user_phone = array_key_exists('contact', $request['message']) ? 
         $request['message']['contact']['phone_number'] : null;
         if($user_phone) return $this->verify($user_phone);
@@ -303,7 +308,7 @@ class TelegramController extends Controller
     protected function sendMessageForVendor($message, $parse_html = false)
     {
         $data = [
-            'chat_id' => "860132140",
+            'chat_id' => "885814932",
             'text' => $message,
             'reply_markup' => $this->reply_markup
         ];
@@ -341,7 +346,7 @@ class TelegramController extends Controller
     public function verify($user_phone)
     {
         $text = 'Phone number : ' . $user_phone . ' request an order.';
-        if($user_phone) return Telegram::sendMessage(['chat_id' => '860132140', 'text' => $text]);
+        if($user_phone) return Telegram::sendMessage(['chat_id' => '885814932', 'text' => $text]);
 
         return 'ok';
     }
