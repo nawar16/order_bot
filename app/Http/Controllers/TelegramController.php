@@ -13,7 +13,6 @@ use App\Models\Setting;
 class TelegramController extends Controller
 {
     protected $telegram;
-
     protected $reply_markup;
     protected $chat_id;
     protected $username;
