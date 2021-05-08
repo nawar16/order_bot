@@ -16,9 +16,10 @@ class TelegramController extends Controller
     protected $reply_markup;
     protected $chat_id;
     protected $username;
+    protected $token = '1764614880:AAHuEXR8ikZBX9wtVdmzsZ5UftD5cFMiSZY';
     public function __construct(){
         Telegram::setTimeout(20*3000);
-        $this->telegram = new Api(config('telegram.bots.token'));
+        $this->telegram = new Api($token);
         \Session::put('lang', 'en');
         $this->middleware("Locale");
     }
@@ -31,7 +32,7 @@ class TelegramController extends Controller
      * https://api.telegram.org/bot.env('TELEGRAM_BOT_TOKEN')/getWebhookInfo
      */
     public function setWebHook(){
-        $url = 'https://tele-bot-tests.herokuapp.com/api/'.config('telegram.bots.token').'/webhook';
+        $url = 'https://tele-bot-tests.herokuapp.com/api/'.$token.'/webhook';
         $response = $this->telegram->setWebHook(['url' => $url]);
         return $response == true ?  redirect()->back() : dd($response);
     }
